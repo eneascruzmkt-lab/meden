@@ -129,8 +129,14 @@
         .s6 .s-dot{background:#e5e2de}.s6 .s-dot.active{background:#1a7a5a}
 
         /* scale */
-        .slide{transform:scale(var(--s,.5));transform-origin:top center;margin-bottom:calc(-1080px * (1 - var(--s,.5)))}
+        .slide{transform:scale(var(--s,.5));transform-origin:top center;margin-bottom:calc(-1080px * (1 - var(--s,.5)));position:relative}
+
+        /* download btn per slide */
+        .slide-wrap{position:relative;display:flex;flex-direction:column;align-items:center}
+        .dl-btn{margin-top:calc(-1080px * (1 - var(--s,.5)) + 12px);padding:10px 24px;font-family:inherit;font-size:.8rem;font-weight:600;background:#1a7a5a;color:#fff;border:none;border-radius:50px;cursor:pointer;transition:background .2s;z-index:5;position:relative}
+        .dl-btn:hover{background:#15644a}
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
@@ -145,11 +151,11 @@
 <div class="gallery" id="gallery">
 
 <!-- SLIDE 1 — IMPACTO -->
-<div class="slide s1">
+<div class="slide-wrap"><div class="slide s1">
     <img class="s1-leaf" src="logonova.png" alt="">
     <div class="s1-inner">
         <div class="s1-brand">me<em>d</em>en</div>
-        <div class="s1-tagline">Emagrecimento médico, do Nordeste para o Nordeste</div>
+        <div class="s1-tagline">Emagrecimento médico com acompanhamento real.</div>
         <div class="s1-arrived">A Meden chegou. 🌿</div>
     </div>
     <div class="s-footer">
@@ -158,14 +164,16 @@
     </div>
 </div>
 
+<button class="dl-btn" data-slide="1">Baixar slide 1</button></div>
+
 <!-- SLIDE 2 — IDENTIDADE REGIONAL -->
-<div class="slide s2">
+<div class="slide-wrap"><div class="slide s2">
     <div class="s-orb s-orb-1"></div>
     <div class="s-orb s-orb-2"></div>
     <div class="s2-inner">
-        <div class="s2-pill">Nordeste</div>
-        <div class="s2-title">Saúde digital feita <em>no Nordeste</em>, para o nordestino.</div>
-        <div class="s2-body">Atendimento pensado pra quem vive aqui. Sem distância, sem espera, sem complicação.</div>
+        <div class="s2-pill">100% online</div>
+        <div class="s2-title">Saúde digital <em>feita pra você.</em></div>
+        <div class="s2-body">Atendimento pensado pra sua realidade. Sem distância, sem espera, sem complicação.</div>
     </div>
     <div class="s-footer">
         <div class="s-logo">me<em>d</em>en</div>
@@ -173,8 +181,10 @@
     </div>
 </div>
 
+<button class="dl-btn" data-slide="2">Baixar slide 2</button></div>
+
 <!-- SLIDE 3 — PROPOSTA DE VALOR -->
-<div class="slide s3">
+<div class="slide-wrap"><div class="slide s3">
     <div class="s3-inner">
         <div class="s3-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
         <div class="s3-title">Emagrecimento com acompanhamento <em>médico de verdade.</em></div>
@@ -187,8 +197,10 @@
     </div>
 </div>
 
-<!-- SLIDE 4 — QUEBRA DE OBJECOES -->
-<div class="slide s4">
+<button class="dl-btn" data-slide="3">Baixar slide 3</button></div>
+
+<!-- SLIDE 4 — QUEBRA DE OBJEÇÕES -->
+<div class="slide-wrap"><div class="slide s4">
     <div class="s-orb s-orb-1"></div>
     <div class="s4-inner">
         <div class="s4-lines">
@@ -196,7 +208,7 @@
             <div class="s4-line"><div class="s4-x">&times;</div><div class="s4-text">Sem fila.</div></div>
             <div class="s4-line"><div class="s4-x">&times;</div><div class="s4-text">Sem complicação.</div></div>
         </div>
-        <div class="s4-sub">Tudo 100% online, no seu tempo, do conforto da sua casa. Do Nordeste para o Nordeste.</div>
+        <div class="s4-sub">Tudo 100% online, no seu tempo, do conforto da sua casa.</div>
     </div>
     <div class="s-footer">
         <div class="s-logo">me<em>d</em>en</div>
@@ -204,8 +216,10 @@
     </div>
 </div>
 
+<button class="dl-btn" data-slide="4">Baixar slide 4</button></div>
+
 <!-- SLIDE 5 — COMO FUNCIONA -->
-<div class="slide s5">
+<div class="slide-wrap"><div class="slide s5">
     <div class="s-orb s-orb-1"></div>
     <div class="s5-inner">
         <div class="s5-label">Como funciona</div>
@@ -220,7 +234,7 @@
             </div>
             <div class="s5-step">
                 <div class="s5-num">3</div>
-                <div class="s5-step-txt"><h3>Entrega discreta na sua porta</h3><p>Embalagem neutra, em todo o Nordeste.</p></div>
+                <div class="s5-step-txt"><h3>Entrega discreta na sua porta</h3><p>Embalagem neutra, direto pra você.</p></div>
             </div>
         </div>
     </div>
@@ -230,8 +244,10 @@
     </div>
 </div>
 
+<button class="dl-btn" data-slide="5">Baixar slide 5</button></div>
+
 <!-- SLIDE 6 — CTA -->
-<div class="slide s6">
+<div class="slide-wrap"><div class="slide s6">
     <div class="s6-inner">
         <div class="s6-title">Simples assim.</div>
         <div class="s6-btn">Começar agora</div>
@@ -246,6 +262,7 @@
         <div class="s-dots"><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot active"></div></div>
     </div>
 </div>
+<button class="dl-btn" data-slide="6">Baixar slide 6</button></div>
 
 </div>
 
@@ -255,7 +272,33 @@ document.querySelectorAll('.tab').forEach(function(t){
     t.addEventListener('click',function(){
         document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('active')});
         t.classList.add('active');
-        document.querySelectorAll('.slide').forEach(function(s){s.style.setProperty('--s',t.dataset.s);s.style.marginBottom='calc(-1080px * (1 - '+t.dataset.s+'))'});
+        var s=t.dataset.s;
+        document.querySelectorAll('.slide').forEach(function(el){el.style.setProperty('--s',s)});
+        document.querySelectorAll('.dl-btn').forEach(function(b){b.style.marginTop='calc(-1080px * (1 - '+s+') + 12px)'});
+    });
+});
+
+// download individual slides
+document.querySelectorAll('.dl-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+        var num=parseInt(btn.dataset.slide);
+        var slideEl=document.querySelectorAll('.slide')[num-1];
+        if(!slideEl)return;
+        var origTransform=slideEl.style.transform;
+        slideEl.style.transform='none';
+        btn.textContent='Gerando...';
+        html2canvas(slideEl,{scale:1,width:1080,height:1080,useCORS:true,allowTaint:true}).then(function(canvas){
+            var a=document.createElement('a');
+            a.download='meden-slide-'+num+'.png';
+            a.href=canvas.toDataURL('image/png');
+            a.click();
+            slideEl.style.transform=origTransform;
+            btn.textContent='Baixar slide '+num;
+        }).catch(function(){
+            slideEl.style.transform=origTransform;
+            btn.textContent='Baixar slide '+num;
+            alert('Erro ao gerar. Tente em 100% e use Print Screen.');
+        });
     });
 });
 </script>
