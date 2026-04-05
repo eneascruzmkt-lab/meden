@@ -99,14 +99,11 @@
         .ticker-dot{width:5px;height:5px;background:var(--green-light);border-radius:50%}
 
         /* ---- VALUE STRIP ---- */
-        .values{padding:64px 0}
-        .values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-        .val{background:var(--card);border-radius:var(--r-lg);padding:28px 20px;text-align:center;box-shadow:var(--shadow);transition:transform .2s}
-        .val:hover{transform:translateY(-3px)}
-        .val-icon{width:44px;height:44px;background:var(--green-tint);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
-        .val-icon svg{width:22px;height:22px;color:var(--green)}
-        .val h4{font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:2px}
-        .val p{font-size:.75rem;color:var(--muted)}
+        .values{padding:32px 0;border-bottom:1px solid var(--border)}
+        .values-row{display:flex;align-items:center;justify-content:center;gap:36px;flex-wrap:wrap}
+        .val{display:flex;align-items:center;gap:8px}
+        .val svg{width:18px;height:18px;color:var(--green);flex-shrink:0}
+        .val span{font-size:.82rem;font-weight:600;color:var(--muted)}
 
         /* ---- SECTION UTILS ---- */
         .sec{padding:96px 0}
@@ -225,7 +222,7 @@
             .hero-cards{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:16px}
             .hero-cards::-webkit-scrollbar{display:none}
             .hero-card{flex:0 0 180px}
-            .values-grid{grid-template-columns:1fr 1fr}
+            .values-row{gap:20px}
             .steps-grid{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto}
             .steps-grid::before{display:none}
             .prod-in{grid-template-columns:1fr}
@@ -252,10 +249,9 @@
             .hero-card-top{height:90px}
             .hero-card-btm{padding:12px 14px}
             .hero-card-btm span{font-size:.8rem}
-            .values{padding:40px 0}
-            .values-grid{gap:10px}
-            .val{padding:20px 14px}
-            .val h4{font-size:.78rem}
+            .values{padding:20px 0}
+            .values-row{gap:12px 20px}
+            .val span{font-size:.75rem}
             .step-img{height:160px}
             .product{padding:64px 0}
             .prod-txt{padding:24px 20px}
@@ -270,7 +266,7 @@
         }
         @media(max-width:380px){
             .hero h1{font-size:1.7rem}
-            .values-grid{grid-template-columns:1fr}
+            .values-row{flex-direction:column;gap:8px;align-items:flex-start}
         }
     </style>
 </head>
@@ -347,27 +343,11 @@
 <!-- VALUES -->
 <section class="values">
     <div class="ctn">
-        <div class="values-grid rv">
-            <div class="val">
-                <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
-                <h4>Medicos pelo CFM</h4>
-                <p>Profissionais licenciados</p>
-            </div>
-            <div class="val">
-                <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-                <h4>100% Online</h4>
-                <p>Do conforto da sua casa</p>
-            </div>
-            <div class="val">
-                <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-                <h4>Preco transparente</h4>
-                <p>Sem taxas escondidas</p>
-            </div>
-            <div class="val">
-                <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-                <h4>Entrega em casa</h4>
-                <p>Discreta e rastreavel</p>
-            </div>
+        <div class="values-row">
+            <div class="val"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Medicos pelo CFM</span></div>
+            <div class="val"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>100% online</span></div>
+            <div class="val"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Preco transparente</span></div>
+            <div class="val"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span>Entrega discreta</span></div>
         </div>
     </div>
 </section>
