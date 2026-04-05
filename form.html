@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação Gratuita — Meden</title>
+    <meta name="description" content="Preencha o formulário para agendar sua avaliação médica gratuita. Consulta online com médico especialista em emagrecimento.">
+    <meta name="robots" content="noindex">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --green: #1a7a5a;
+            --green-hover: #15644a;
+            --green-glow: rgba(26,122,90,0.25);
+            --green-tint: #e6f5ee;
+            --green-dark: #0f3d2e;
+            --bg: #f8f7f5;
+            --bg-card: #ffffff;
+            --text: #1a1a18;
+            --text-body: #3a3632;
+            --text-muted: #6b6560;
+            --text-light: #9a958f;
+            --border: #eae7e3;
+            --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06), 0 12px 40px rgba(0,0,0,0.04);
+            --radius: 16px;
+            --radius-pill: 50px;
+        }
+
+        html { overflow-x: hidden; }
+
+        body {
+            font-family: 'Red Hat Text', -apple-system, sans-serif;
+            color: var(--text-body);
+            background: var(--bg);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        .nav {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-card);
+        }
+        .nav-inner {
+            max-width: 1120px; margin: 0 auto; padding: 0 24px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem; font-weight: 800;
+            color: var(--green);
+            letter-spacing: -0.02em;
+        }
+        .nav-back {
+            font-size: 0.85rem; font-weight: 500;
+            color: var(--text-muted);
+            display: flex; align-items: center; gap: 6px;
+            transition: color 0.2s;
+        }
+        .nav-back:hover { color: var(--green); }
+        .nav-back svg { width: 16px; height: 16px; }
+
+        /* PAGE */
+        .page {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px 24px;
+        }
+        .page-inner {
+            width: 100%;
+            max-width: 940px;
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 56px;
+            align-items: start;
+        }
+
+        /* LEFT SIDE */
+        .info { padding-top: 12px; }
+        .info-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 6px 14px;
+            background: var(--green-tint);
+            border-radius: var(--radius-pill);
+            font-size: 0.75rem; font-weight: 600;
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 20px;
+        }
+        .info h1 {
+            font-size: 2rem; font-weight: 700;
+            color: var(--text); line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+        .info > p {
+            font-size: 1rem; color: var(--text-muted);
+            line-height: 1.65; margin-bottom: 36px;
+        }
+        .info-img {
+            width: 100%; height: 220px;
+            object-fit: cover; border-radius: var(--radius);
+            margin-bottom: 28px;
+            box-shadow: var(--shadow);
+        }
+        .info-list { list-style: none; }
+        .info-list li {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 0;
+            font-size: 0.9rem; color: var(--text-body);
+            border-bottom: 1px solid var(--border);
+        }
+        .info-list li:last-child { border-bottom: none; }
+        .info-list li svg { flex-shrink: 0; width: 20px; height: 20px; color: var(--green); }
+
+        /* FORM CARD */
+        .form-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        /* PROGRESS */
+        .progress { margin-bottom: 32px; }
+        .progress-bar {
+            height: 4px; background: var(--border);
+            border-radius: 4px; overflow: hidden;
+            margin-bottom: 12px;
+        }
+        .progress-fill {
+            height: 100%; background: var(--green);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        .progress-text {
+            font-size: 0.75rem; color: var(--text-light);
+            display: flex; justify-content: space-between;
+        }
+
+        /* STEPS */
+        .step { display: none; }
+        .step.active { display: block; }
+        .step-title {
+            font-size: 1.2rem; font-weight: 700;
+            color: var(--text); margin-bottom: 6px;
+        }
+        .step-sub {
+            font-size: 0.85rem; color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        /* FORM FIELDS */
+        .field { margin-bottom: 20px; }
+        .field label {
+            display: block;
+            font-size: 0.8rem; font-weight: 600;
+            color: var(--text); margin-bottom: 6px;
+        }
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 14px 16px;
+            font-family: inherit; font-size: 1rem;
+            color: var(--text);
+            background: #f5f4f1;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            outline: none;
+            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+            -webkit-appearance: none;
+        }
+        .field input:focus,
+        .field select:focus {
+            background: var(--bg-card);
+            border-color: var(--green);
+            box-shadow: 0 0 0 4px var(--green-glow);
+        }
+        .field input::placeholder { color: #b0aca8; }
+        .field input.error,
+        .field select.error { border-color: #c0392b; background: #fdf2f0; }
+        .field-error {
+            font-size: 0.75rem; color: #c0392b;
+            margin-top: 4px; display: none;
+        }
+        .field input.error ~ .field-error,
+        .field select.error ~ .field-error { display: block; }
+
+        /* OPTION CARDS */
+        .options { display: grid; gap: 10px; }
+        .option-card {
+            display: flex; align-items: center; gap: 14px;
+            padding: 16px 18px;
+            background: #f5f4f1;
+            border: 2px solid transparent;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+        }
+        .option-card:hover { background: var(--green-tint); border-color: var(--green); }
+        .option-card.selected {
+            background: var(--green-tint);
+            border-color: var(--green);
+            box-shadow: 0 0 0 4px var(--green-glow);
+        }
+        .option-radio {
+            width: 20px; height: 20px;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            transition: border-color 0.2s;
+        }
+        .option-card.selected .option-radio {
+            border-color: var(--green);
+        }
+        .option-radio::after {
+            content: '';
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--green);
+            transform: scale(0);
+            transition: transform 0.2s;
+        }
+        .option-card.selected .option-radio::after { transform: scale(1); }
+        .option-text {
+            font-size: 0.9rem; font-weight: 500;
+            color: var(--text-body);
+        }
+
+        /* BUTTONS */
+        .btn-row {
+            display: flex; gap: 12px; margin-top: 28px;
+        }
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 14px 32px;
+            font-family: inherit; font-size: 0.95rem; font-weight: 600;
+            border: none; border-radius: var(--radius-pill);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+        }
+        .btn-primary {
+            background: var(--green); color: #fff;
+            box-shadow: 0 2px 8px var(--green-glow);
+            flex: 1;
+        }
+        .btn-primary:hover { background: var(--green-hover); transform: translateY(-1px); box-shadow: 0 4px 20px var(--green-glow); }
+        .btn-primary:active { transform: translateY(0); }
+        .btn-back {
+            background: transparent; color: var(--text-muted);
+            border: 2px solid var(--border);
+            padding: 14px 20px;
+        }
+        .btn-back:hover { background: #f0eee9; }
+
+        /* SUCCESS */
+        .success { display: none; text-align: center; padding: 40px 16px; }
+        .success.active { display: block; }
+        .success-icon {
+            width: 80px; height: 80px;
+            background: var(--green-tint); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 24px;
+        }
+        .success-icon svg { width: 40px; height: 40px; color: var(--green); }
+        .success h2 {
+            font-size: 1.5rem; font-weight: 700;
+            color: var(--text); margin-bottom: 12px;
+        }
+        .success p {
+            font-size: 1rem; color: var(--text-muted);
+            line-height: 1.6; margin-bottom: 28px; max-width: 380px; margin-left: auto; margin-right: auto;
+        }
+        .success .btn-primary { width: 100%; max-width: 320px; padding: 16px; font-size: 1rem; }
+
+        /* FOOTER */
+        .form-footer {
+            text-align: center; padding: 24px;
+            font-size: 0.7rem; color: var(--text-light);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .page-inner {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .info { order: 2; }
+            .info h1 { font-size: 1.5rem; }
+            .info-img { height: 160px; }
+            .form-card { padding: 24px; order: 1; }
+        }
+
+        @media (max-width: 480px) {
+            .page { padding: 24px 16px; }
+            .form-card { padding: 20px; }
+            .info h1 { font-size: 1.3rem; }
+            .btn-row { flex-direction: column-reverse; }
+            .btn-back { text-align: center; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">meden</a>
+            <a href="/" class="nav-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                Voltar ao site
+            </a>
+        </div>
+    </nav>
+
+    <main class="page">
+        <div class="page-inner">
+            <div class="info">
+                <div class="info-badge">Avaliacao gratuita</div>
+                <h1>Sua jornada comeca com uma conversa</h1>
+                <p>Responda algumas perguntas rapidas e nosso time medico vai avaliar o melhor caminho para voce. Sem compromisso.</p>
+                <img class="info-img" src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&h=320&fit=crop&crop=faces" alt="Medico atencioso" loading="lazy">
+                <ul class="info-list">
+                    <li>
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        Consulta 100% gratuita e sem compromisso
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        Medico avalia se GLP-1 e indicado para voce
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        Resposta em ate 24h pelo WhatsApp
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        Suas informacoes sao sigilosas e protegidas
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <div class="form-card" id="formCard">
+                    <div class="progress">
+                        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:25%"></div></div>
+                        <div class="progress-text"><span id="progressLabel">Passo 1 de 4</span><span id="progressPct">25%</span></div>
+                    </div>
+
+                    <!-- STEP 1: Dificuldade -->
+                    <div class="step active" data-step="1">
+                        <h3 class="step-title">Qual e sua maior dificuldade?</h3>
+                        <p class="step-sub">Selecione a opcao que mais se aplica a voce.</p>
+                        <div class="options" id="optDificuldade">
+                            <div class="option-card" data-value="Controlar o apetite">
+                                <div class="option-radio"></div>
+                                <span class="option-text">Controlar o apetite</span>
+                            </div>
+                            <div class="option-card" data-value="Manter o peso apos dietas">
+                                <div class="option-radio"></div>
+                                <span class="option-text">Manter o peso apos dietas</span>
+                            </div>
+                            <div class="option-card" data-value="Falta de tempo para acompanhamento">
+                                <div class="option-radio"></div>
+                                <span class="option-text">Falta de tempo para acompanhamento</span>
+                            </div>
+                            <div class="option-card" data-value="Nao sei por onde comecar">
+                                <div class="option-radio"></div>
+                                <span class="option-text">Nao sei por onde comecar</span>
+                            </div>
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn btn-primary" id="btnNext1" disabled>Continuar</button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: Cidade + Peso -->
+                    <div class="step" data-step="2">
+                        <h3 class="step-title">Onde voce mora e quanto pesa?</h3>
+                        <p class="step-sub">Precisamos saber para personalizar seu atendimento.</p>
+                        <div class="field">
+                            <label for="cidade">Cidade</label>
+                            <select id="cidade" name="cidade" required>
+                                <option value="" disabled selected>Selecione sua cidade</option>
+                                <option value="Natal">Natal</option>
+                                <option value="Fortaleza">Fortaleza</option>
+                                <option value="Recife">Recife</option>
+                                <option value="Salvador">Salvador</option>
+                                <option value="Joao Pessoa">Joao Pessoa</option>
+                                <option value="Maceio">Maceio</option>
+                                <option value="Teresina">Teresina</option>
+                                <option value="Sao Luis">Sao Luis</option>
+                                <option value="Aracaju">Aracaju</option>
+                                <option value="Outra cidade">Outra cidade</option>
+                            </select>
+                            <div class="field-error">Selecione sua cidade.</div>
+                        </div>
+                        <div class="field">
+                            <label for="peso">Peso atual (kg)</label>
+                            <input type="number" id="peso" name="peso" placeholder="Ex: 85" min="30" max="300" required>
+                            <div class="field-error">Insira seu peso (entre 30 e 300 kg).</div>
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn btn-back" data-goto="1">Voltar</button>
+                            <button class="btn btn-primary" id="btnNext2">Continuar</button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: Nome + WhatsApp -->
+                    <div class="step" data-step="3">
+                        <h3 class="step-title">Como podemos entrar em contato?</h3>
+                        <p class="step-sub">Nossa equipe vai falar com voce pelo WhatsApp.</p>
+                        <div class="field">
+                            <label for="nome">Nome completo</label>
+                            <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required autocomplete="name">
+                            <div class="field-error">Insira seu nome completo.</div>
+                        </div>
+                        <div class="field">
+                            <label for="whatsapp">WhatsApp</label>
+                            <input type="tel" id="whatsapp" name="whatsapp" placeholder="(84) 99999-9999" required autocomplete="tel">
+                            <div class="field-error">Insira um numero valido com DDD.</div>
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn btn-back" data-goto="2">Voltar</button>
+                            <button class="btn btn-primary" id="btnNext3">Continuar</button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 4: Confirmacao -->
+                    <div class="step" data-step="4">
+                        <h3 class="step-title">Confirme seus dados</h3>
+                        <p class="step-sub">Verifique se esta tudo certo antes de enviar.</p>
+                        <div style="background:#f5f4f1; border-radius:14px; padding:20px; margin-bottom:8px;">
+                            <div style="display:grid; gap:12px;">
+                                <div><span style="font-size:0.75rem; color:#9a958f; text-transform:uppercase; letter-spacing:0.06em;">Nome</span><div style="font-weight:600; color:#1a1a18;" id="revNome">-</div></div>
+                                <div><span style="font-size:0.75rem; color:#9a958f; text-transform:uppercase; letter-spacing:0.06em;">WhatsApp</span><div style="font-weight:600; color:#1a1a18;" id="revWhatsapp">-</div></div>
+                                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                    <div><span style="font-size:0.75rem; color:#9a958f; text-transform:uppercase; letter-spacing:0.06em;">Cidade</span><div style="font-weight:600; color:#1a1a18;" id="revCidade">-</div></div>
+                                    <div><span style="font-size:0.75rem; color:#9a958f; text-transform:uppercase; letter-spacing:0.06em;">Peso</span><div style="font-weight:600; color:#1a1a18;" id="revPeso">-</div></div>
+                                </div>
+                                <div><span style="font-size:0.75rem; color:#9a958f; text-transform:uppercase; letter-spacing:0.06em;">Maior dificuldade</span><div style="font-weight:600; color:#1a1a18;" id="revDificuldade">-</div></div>
+                            </div>
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn btn-back" data-goto="3">Voltar</button>
+                            <button class="btn btn-primary" id="btnSubmit">Enviar avaliacao</button>
+                        </div>
+                        <p style="text-align:center; font-size:0.7rem; color:#9a958f; margin-top:14px;">Seus dados estao seguros e nao serao compartilhados.</p>
+                    </div>
+                </div>
+
+                <div class="form-card success" id="success">
+                    <div class="success-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <h2>Recebemos sua solicitacao!</h2>
+                    <p>Nossa equipe vai entrar em contato pelo WhatsApp em ate 24 horas. Fique de olho nas mensagens.</p>
+                    <a href="#" id="whatsappLink" class="btn btn-primary" target="_blank" rel="noopener">Falar no WhatsApp agora</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="form-footer">
+        Meden &middot; Medicos licenciados pelo CFM &middot; Este site nao realiza propaganda de medicamentos.
+    </footer>
+
+    <script>
+        // Data store
+        var data = { dificuldade: '', cidade: '', peso: '', nome: '', whatsapp: '' };
+        var currentStep = 1;
+
+        // Elements
+        var steps = document.querySelectorAll('.step');
+        var progressFill = document.getElementById('progressFill');
+        var progressLabel = document.getElementById('progressLabel');
+        var progressPct = document.getElementById('progressPct');
+
+        function showStep(n) {
+            currentStep = n;
+            steps.forEach(function(s) { s.classList.toggle('active', parseInt(s.dataset.step) === n); });
+            var pct = n * 25;
+            progressFill.style.width = pct + '%';
+            progressLabel.textContent = 'Passo ' + n + ' de 4';
+            progressPct.textContent = pct + '%';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Step 1: Option cards
+        var optCards = document.querySelectorAll('#optDificuldade .option-card');
+        var btnNext1 = document.getElementById('btnNext1');
+        optCards.forEach(function(card) {
+            card.addEventListener('click', function() {
+                optCards.forEach(function(c) { c.classList.remove('selected'); });
+                card.classList.add('selected');
+                data.dificuldade = card.dataset.value;
+                btnNext1.disabled = false;
+            });
+        });
+        btnNext1.addEventListener('click', function() { if (data.dificuldade) showStep(2); });
+
+        // Step 2
+        document.getElementById('btnNext2').addEventListener('click', function() {
+            var cidade = document.getElementById('cidade');
+            var peso = document.getElementById('peso');
+            var ok = true;
+            cidade.classList.remove('error');
+            peso.classList.remove('error');
+            if (!cidade.value) { cidade.classList.add('error'); ok = false; }
+            var p = parseInt(peso.value);
+            if (isNaN(p) || p < 30 || p > 300) { peso.classList.add('error'); ok = false; }
+            if (!ok) return;
+            data.cidade = cidade.value;
+            data.peso = peso.value;
+            showStep(3);
+        });
+
+        // Step 3: WhatsApp mask
+        var whatsInput = document.getElementById('whatsapp');
+        whatsInput.addEventListener('input', function(e) {
+            var v = e.target.value.replace(/\D/g, '');
+            if (v.length > 11) v = v.slice(0, 11);
+            if (v.length > 7) v = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
+            else if (v.length > 2) v = '(' + v.slice(0,2) + ') ' + v.slice(2);
+            else if (v.length > 0) v = '(' + v;
+            e.target.value = v;
+        });
+
+        document.getElementById('btnNext3').addEventListener('click', function() {
+            var nome = document.getElementById('nome');
+            var whats = document.getElementById('whatsapp');
+            var ok = true;
+            nome.classList.remove('error');
+            whats.classList.remove('error');
+            if (!nome.value.trim()) { nome.classList.add('error'); ok = false; }
+            var digits = whats.value.replace(/\D/g, '');
+            if (digits.length < 10 || digits.length > 11) { whats.classList.add('error'); ok = false; }
+            if (!ok) return;
+            data.nome = nome.value.trim();
+            data.whatsapp = whats.value;
+            // Populate review
+            document.getElementById('revNome').textContent = data.nome;
+            document.getElementById('revWhatsapp').textContent = data.whatsapp;
+            document.getElementById('revCidade').textContent = data.cidade;
+            document.getElementById('revPeso').textContent = data.peso + ' kg';
+            document.getElementById('revDificuldade').textContent = data.dificuldade;
+            showStep(4);
+        });
+
+        // Back buttons
+        document.querySelectorAll('.btn-back').forEach(function(btn) {
+            btn.addEventListener('click', function() { showStep(parseInt(btn.dataset.goto)); });
+        });
+
+        // Remove error on input
+        document.querySelectorAll('.field input, .field select').forEach(function(el) {
+            el.addEventListener('input', function() { el.classList.remove('error'); });
+            el.addEventListener('change', function() { el.classList.remove('error'); });
+        });
+
+        // Submit
+        document.getElementById('btnSubmit').addEventListener('click', function() {
+            var msg = encodeURIComponent('Ola! Acabei de preencher o formulario no site e gostaria de agendar minha avaliacao gratuita. Meu nome e ' + data.nome + '.');
+            var url = 'https://wa.me/5584999999999?text=' + msg;
+            document.getElementById('whatsappLink').href = url;
+            document.getElementById('formCard').style.display = 'none';
+            document.getElementById('success').classList.add('active');
+            window.open(url, '_blank');
+        });
+    </script>
+
+</body>
+</html>
