@@ -6,6 +6,7 @@
     <title>Avaliação Gratuita — Meden</title>
     <meta name="description" content="Preencha o formulário para agendar sua avaliação médica gratuita. Consulta online com médico especialista em emagrecimento.">
     <meta name="robots" content="noindex">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,11 +57,9 @@
             display: flex; align-items: center; justify-content: space-between;
         }
         .nav-logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.4rem; font-weight: 800;
-            color: var(--green);
-            letter-spacing: -0.02em;
+            display: flex; align-items: center; height: 28px;
         }
+        .nav-logo img { height: 28px; width: auto; }
         .nav-back {
             font-size: 0.85rem; font-weight: 500;
             color: var(--text-muted);
@@ -318,7 +317,7 @@
 
     <nav class="nav">
         <div class="nav-inner">
-            <a href="/" class="nav-logo">meden</a>
+            <a href="/" class="nav-logo"><img src="logo.svg" alt="Meden"></a>
             <a href="/" class="nav-back">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
                 Voltar ao site

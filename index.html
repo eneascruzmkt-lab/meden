@@ -10,6 +10,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://meden.com.br">
     <meta property="og:locale" content="pt_BR">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
@@ -34,8 +35,11 @@
         .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 0;transition:background .4s,box-shadow .4s,padding .3s}
         .nav.scrolled{background:rgba(247,246,244,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 6px rgba(0,0,0,.06);padding:10px 0}
         .nav-in{display:flex;align-items:center;justify-content:space-between}
-        .logo{font-family:Montserrat,sans-serif;font-size:1.5rem;font-weight:800;color:#fff;letter-spacing:-.03em;transition:color .4s}
-        .nav.scrolled .logo{color:var(--green)}
+        .logo{display:flex;align-items:center;height:32px;transition:opacity .3s}
+        .logo img{height:32px;width:auto}
+        .logo .logo-dark{display:none}
+        .nav.scrolled .logo .logo-white{display:none}
+        .nav.scrolled .logo .logo-dark{display:block}
         .nav-links{display:flex;align-items:center;gap:28px}
         .nav-links a{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.78);transition:color .2s}
         .nav.scrolled .nav-links a{color:var(--muted)}
@@ -58,8 +62,8 @@
         .mob-menu .btn-g{margin-top:12px;text-align:center;border-bottom:0}
 
         /* ---- HERO ---- */
-        .hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;background:linear-gradient(175deg,#0c3425 0%,#14694c 40%,#1a7a5a 55%,var(--bg) 100%)}
-        .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,var(--bg),transparent);pointer-events:none}
+        .hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;background:linear-gradient(175deg,#081f16 0%,#0f3d2e 20%,#1a7a5a 50%,#1a7a5a 65%,#3a9e78 80%,var(--bg) 100%)}
+        .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to top,var(--bg),transparent);pointer-events:none}
         .hero-ct{position:relative;z-index:2;max-width:760px;padding:0 24px}
         .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 18px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:var(--pill);font-size:.8rem;font-weight:500;color:rgba(255,255,255,.85);margin-bottom:28px;backdrop-filter:blur(6px)}
         .hero-dot{width:7px;height:7px;background:#5ce0a0;border-radius:50%;animation:pulse 2s ease-in-out infinite}
@@ -179,7 +183,8 @@
         /* ---- FOOTER ---- */
         .footer{background:linear-gradient(166deg,#145e44,#071a10);color:rgba(255,255,255,.55);padding:56px 0 32px}
         .ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
-        .ft-logo{font-family:Montserrat,sans-serif;font-size:1.3rem;font-weight:800;color:#fff}
+        .ft-logo{height:28px;margin-bottom:4px}
+        .ft-logo img{height:28px;width:auto}
         .ft-tag{font-size:.82rem;color:rgba(255,255,255,.35);margin-top:6px;margin-bottom:16px}
         .ft-contact p{font-size:.8rem;color:rgba(255,255,255,.4);margin-bottom:4px}
         .ft-col-t{font-size:.72rem;font-weight:600;color:#fff;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
@@ -250,7 +255,7 @@
 <!-- NAV -->
 <nav class="nav" id="nav">
     <div class="ctn nav-in">
-        <a href="/" class="logo">meden</a>
+        <a href="/" class="logo"><img src="logo-white.svg" alt="Meden" class="logo-white"><img src="logo.svg" alt="Meden" class="logo-dark"></a>
         <div class="nav-links">
             <a href="#como-funciona">Como funciona</a>
             <a href="#programa">Programa</a>
@@ -488,7 +493,7 @@
     <div class="ctn">
         <div class="ft-grid">
             <div>
-                <div class="ft-logo">meden</div>
+                <div class="ft-logo"><img src="logo-white.svg" alt="Meden"></div>
                 <div class="ft-tag">Emagrecimento medico, do Nordeste para o Nordeste</div>
                 <div class="ft-contact"><p>contato@meden.com.br</p><p>Atendemos todo o Nordeste</p></div>
             </div>
