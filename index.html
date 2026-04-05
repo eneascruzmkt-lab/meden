@@ -70,7 +70,7 @@
         .hero-orb-3{width:250px;height:250px;background:#0f5c42;top:40%;right:30%;animation-delay:-5s;opacity:.3}
         @keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(20px,-15px) scale(1.05)}66%{transform:translate(-15px,10px) scale(.95)}}
         .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:100px;background:linear-gradient(to top,var(--bg),transparent);z-index:1;pointer-events:none}
-        .hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;max-width:1100px;margin:0 auto;padding:120px 24px 0;width:100%;gap:56px}
+        .hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;max-width:1100px;margin:0 auto;padding:88px 24px 0;width:100%;gap:48px}
         .hero-ct{text-align:center;max-width:680px}
         .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--pill);font-size:.78rem;font-weight:500;color:rgba(255,255,255,.8);margin-bottom:24px;backdrop-filter:blur(6px)}
         .hero-dot{width:7px;height:7px;background:#5ce0a0;border-radius:50%;animation:pulse 2s ease-in-out infinite}
@@ -82,8 +82,8 @@
         .hero-cards{display:flex;gap:12px;padding:0 12px 12px;flex-wrap:wrap;justify-content:center}
         .hero-card{display:flex;flex-direction:column;width:210px;border-radius:20px;overflow:hidden;text-decoration:none;transition:transform .25s,box-shadow .25s;box-shadow:0 4px 20px rgba(0,0,0,.15)}
         .hero-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.25)}
-        .hero-card-top{height:110px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-        .hero-card-top svg{width:48px;height:48px;opacity:.85}
+        .hero-card-top{height:120px;position:relative;overflow:hidden}
+        .hero-card-top img{width:100%;height:100%;object-fit:cover}
         .hero-card-btm{background:#fafafa;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px}
         .hero-card-btm span{font-family:'Red Hat Text',sans-serif;font-size:.88rem;font-weight:600;color:var(--text);letter-spacing:-.01em}
         .hero-card-arrow{width:18px;height:18px;color:var(--muted);flex-shrink:0;transition:transform .2s}
@@ -244,13 +244,12 @@
             .sec{padding:64px 0}
             .nav{padding:10px 0}
             .logo{font-size:1.3rem}
-            .hero-inner{padding-top:90px;gap:40px}
+            .hero-inner{padding-top:72px;gap:32px}
             .hero h1{font-size:2rem}
             .hero-p{font-size:.9rem}
             .hero-cards{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding:0 4px 16px}
             .hero-card{flex:0 0 160px}
             .hero-card-top{height:90px}
-            .hero-card-top svg{width:40px;height:40px}
             .hero-card-btm{padding:12px 14px}
             .hero-card-btm span{font-size:.8rem}
             .values{padding:40px 0}
@@ -313,32 +312,20 @@
             <p class="hero-p rv">Agora voce tem acesso a medicos especialistas e tratamento com GLP-1, com acompanhamento real do primeiro dia ate o resultado. 100% online.</p>
         </div>
         <div class="hero-cards rv">
-            <!-- Card 1: Emagrecimento -->
             <a href="form.html" class="hero-card">
-                <div class="hero-card-top" style="background:#d6f2da">
-                    <svg viewBox="0 0 48 48" fill="none" stroke="#1a7a5a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6c-6 0-12 8-12 18s6 18 12 18 12-8 12-18S30 6 24 6z"/><path d="M24 14v8l4 4"/><circle cx="24" cy="24" r="2" fill="#1a7a5a" stroke="none"/></svg>
-                </div>
+                <div class="hero-card-top"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=280&h=160&fit=crop&crop=center" alt="Emagrecimento" loading="eager"></div>
                 <div class="hero-card-btm"><span>Emagrecimento</span><svg class="hero-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
             </a>
-            <!-- Card 2: Acompanhamento -->
             <a href="#programa" class="hero-card">
-                <div class="hero-card-top" style="background:#e4ecf2">
-                    <svg viewBox="0 0 48 48" fill="none" stroke="#4a7a9a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="8" width="28" height="20" rx="3"/><line x1="18" y1="32" x2="30" y2="32"/><line x1="24" y1="28" x2="24" y2="32"/><circle cx="20" cy="18" r="3"/><path d="M28 21c0-2.2-1.8-4-4-4"/><line x1="32" y1="14" x2="36" y2="14"/><line x1="32" y1="18" x2="35" y2="18"/></svg>
-                </div>
+                <div class="hero-card-top"><img src="https://images.unsplash.com/photo-1609902726285-00668009f004?w=280&h=160&fit=crop&crop=faces" alt="Acompanhamento medico" loading="eager"></div>
                 <div class="hero-card-btm"><span>Acompanhamento</span><svg class="hero-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
             </a>
-            <!-- Card 3: Nutricao -->
             <a href="#programa" class="hero-card">
-                <div class="hero-card-top" style="background:#f2ebe1">
-                    <svg viewBox="0 0 48 48" fill="none" stroke="#8a6a4a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 8c-4 2-6 8-4 14s8 12 8 18"/><path d="M28 8c4 2 6 8 4 14s-8 12-8 18"/><path d="M24 14v6"/><circle cx="18" cy="28" r="2" fill="#8a6a4a" stroke="none"/><circle cx="30" cy="24" r="2" fill="#8a6a4a" stroke="none"/></svg>
-                </div>
+                <div class="hero-card-top"><img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=280&h=160&fit=crop&crop=center" alt="Nutricao saudavel" loading="eager"></div>
                 <div class="hero-card-btm"><span>Nutricao</span><svg class="hero-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
             </a>
-            <!-- Card 4: Resultados -->
             <a href="#depoimentos" class="hero-card">
-                <div class="hero-card-top" style="background:#f2e6ec">
-                    <svg viewBox="0 0 48 48" fill="none" stroke="#9a5a7a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 36V20l6-8h12l6 8v16"/><path d="M12 36h24"/><polyline points="18 28 22 24 26 30 32 20"/><circle cx="18" cy="28" r="1.5" fill="#9a5a7a" stroke="none"/><circle cx="32" cy="20" r="1.5" fill="#9a5a7a" stroke="none"/></svg>
-                </div>
+                <div class="hero-card-top"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=280&h=160&fit=crop&crop=faces" alt="Resultados reais" loading="eager"></div>
                 <div class="hero-card-btm"><span>Resultados</span><svg class="hero-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
             </a>
         </div>
