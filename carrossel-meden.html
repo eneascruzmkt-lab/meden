@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meden — Carrossel Instagram</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Red Hat Text',system-ui,sans-serif;background:#e8e6e2;color:#1a1a18}
+
+        .controls{position:fixed;top:0;left:0;right:0;z-index:10;background:#fff;border-bottom:1px solid #e5e2de;padding:14px 24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+        .controls span{font-family:Montserrat,sans-serif;font-weight:800;font-size:1rem;margin-right:8px}
+        .controls em{font-style:normal;color:#1a7a5a}
+        .tab{padding:8px 18px;font-family:inherit;font-size:.8rem;font-weight:600;border:2px solid #e5e2de;background:#fff;color:#6b6560;border-radius:50px;cursor:pointer;transition:all .2s}
+        .tab.active{background:#1a7a5a;color:#fff;border-color:#1a7a5a}
+        .tab:hover{border-color:#1a7a5a}
+        .info{margin-left:auto;font-size:.72rem;color:#9a958f}
+
+        .gallery{padding:80px 24px 40px;display:flex;flex-direction:column;align-items:center;gap:32px}
+
+        /* ---- SLIDE BASE ---- */
+        .slide{width:1080px;height:1080px;position:relative;overflow:hidden;flex-shrink:0;border-radius:8px;box-shadow:0 4px 24px rgba(0,0,0,.12)}
+
+        /* ---- SHARED ---- */
+        .s-footer{position:absolute;bottom:0;left:0;right:0;padding:28px 72px;display:flex;align-items:center;justify-content:space-between;z-index:2}
+        .s-footer::before{content:'';position:absolute;top:0;left:72px;right:72px;height:1px}
+        .s-logo{font-family:Montserrat,sans-serif;font-size:32px;font-weight:800;letter-spacing:-.03em}
+        .s-logo em{font-style:normal}
+        .s-dots{display:flex;gap:8px}
+        .s-dot{width:12px;height:12px;border-radius:50%}
+        .s-orb{position:absolute;border-radius:50%;filter:blur(120px)}
+
+        /* ==============================
+           SLIDE 1 — IMPACTO / MARCA
+           ============================== */
+        .s1{background:#f8f7f5;display:flex;align-items:center;justify-content:center}
+        .s1 .s1-inner{text-align:center;z-index:1;position:relative}
+        .s1 .s1-leaf{position:absolute;top:50%;left:50%;width:500px;height:500px;transform:translate(-50%,-50%);opacity:.04}
+        .s1-brand{font-family:Montserrat,sans-serif;font-size:96px;font-weight:800;letter-spacing:-.04em;color:#1a1a18;margin-bottom:16px}
+        .s1-brand em{font-style:normal;color:#1a7a5a}
+        .s1-tagline{font-size:36px;color:#7a756f;font-weight:400;margin-bottom:48px}
+        .s1-arrived{font-family:Montserrat,sans-serif;font-size:48px;font-weight:700;color:#1a7a5a}
+        .s1 .s-footer::before{background:#eae7e2}
+        .s1 .s-logo{color:#1a1a18}.s1 .s-logo em{color:#1a7a5a}
+        .s1 .s-dot{background:#e5e2de}.s1 .s-dot.active{background:#1a7a5a}
+
+        /* ==============================
+           SLIDE 2 — IDENTIDADE REGIONAL
+           ============================== */
+        .s2{background:linear-gradient(158deg,#0f3d2e,#1a7a5a)}
+        .s2 .s-orb-1{width:600px;height:600px;background:#14a06e;top:-15%;right:-10%;opacity:.35}
+        .s2 .s-orb-2{width:400px;height:400px;background:#0f5c42;bottom:-10%;left:-8%;opacity:.3}
+        .s2-inner{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;padding:100px 80px;height:100%}
+        .s2-pill{display:inline-block;align-self:flex-start;font-size:24px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:10px 24px;border-radius:50px;background:rgba(255,255,255,.1);color:#7ddba8;margin-bottom:48px}
+        .s2-title{font-family:Montserrat,sans-serif;font-size:72px;font-weight:800;line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:32px}
+        .s2-title em{font-style:normal;color:#7ddba8}
+        .s2-body{font-size:34px;color:rgba(255,255,255,.65);line-height:1.6;max-width:700px}
+        .s2 .s-footer::before{background:rgba(255,255,255,.1)}
+        .s2 .s-logo{color:#fff}.s2 .s-logo em{color:#7ddba8}
+        .s2 .s-dot{background:rgba(255,255,255,.15)}.s2 .s-dot.active{background:#7ddba8}
+
+        /* ==============================
+           SLIDE 3 — PROPOSTA DE VALOR
+           ============================== */
+        .s3{background:#f8f7f5}
+        .s3-inner{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;padding:100px 80px;height:100%}
+        .s3-icon{width:80px;height:80px;background:#e6f5ee;border-radius:20px;display:flex;align-items:center;justify-content:center;margin-bottom:40px}
+        .s3-icon svg{width:40px;height:40px;color:#1a7a5a}
+        .s3-title{font-family:Montserrat,sans-serif;font-size:68px;font-weight:800;line-height:1.1;letter-spacing:-.03em;color:#1a1a18;margin-bottom:32px}
+        .s3-title em{font-style:normal;color:#1a7a5a}
+        .s3-body{font-size:34px;color:#7a756f;line-height:1.6;max-width:750px}
+        .s3-badge{display:inline-flex;align-items:center;gap:10px;margin-top:40px;padding:14px 28px;background:#e6f5ee;border-radius:50px;font-size:26px;font-weight:600;color:#1a7a5a}
+        .s3-badge svg{width:22px;height:22px}
+        .s3 .s-footer::before{background:#eae7e2}
+        .s3 .s-logo{color:#1a1a18}.s3 .s-logo em{color:#1a7a5a}
+        .s3 .s-dot{background:#e5e2de}.s3 .s-dot.active{background:#1a7a5a}
+
+        /* ==============================
+           SLIDE 4 — QUEBRA DE OBJECOES
+           ============================== */
+        .s4{background:#0b1f17}
+        .s4 .s-orb-1{width:500px;height:500px;background:#1a7a5a;top:-10%;left:-10%;opacity:.35}
+        .s4-inner{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:100px 80px;height:100%}
+        .s4-lines{display:flex;flex-direction:column;gap:24px;margin-bottom:48px}
+        .s4-line{display:flex;align-items:center;gap:20px}
+        .s4-x{width:52px;height:52px;background:rgba(255,255,255,.06);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;color:rgba(255,255,255,.25);flex-shrink:0}
+        .s4-text{font-family:Montserrat,sans-serif;font-size:64px;font-weight:800;color:#fff;letter-spacing:-.02em}
+        .s4-sub{font-size:32px;color:rgba(255,255,255,.5);line-height:1.6;max-width:700px}
+        .s4 .s-footer::before{background:rgba(255,255,255,.06)}
+        .s4 .s-logo{color:#fff}.s4 .s-logo em{color:#7ddba8}
+        .s4 .s-dot{background:rgba(255,255,255,.1)}.s4 .s-dot.active{background:#7ddba8}
+
+        /* ==============================
+           SLIDE 5 — COMO FUNCIONA
+           ============================== */
+        .s5{background:linear-gradient(158deg,#145e44,#0a2e1f)}
+        .s5 .s-orb-1{width:500px;height:500px;background:#1a7a5a;bottom:-15%;right:-10%;opacity:.3}
+        .s5-inner{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;padding:80px;height:100%}
+        .s5-label{font-size:24px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#7ddba8;margin-bottom:48px}
+        .s5-steps{display:flex;flex-direction:column;gap:0}
+        .s5-step{display:flex;align-items:flex-start;gap:28px;position:relative;padding-bottom:40px}
+        .s5-step:last-child{padding-bottom:0}
+        .s5-step::before{content:'';position:absolute;left:32px;top:68px;bottom:0;width:2px;background:rgba(255,255,255,.1)}
+        .s5-step:last-child::before{display:none}
+        .s5-num{width:64px;height:64px;background:rgba(255,255,255,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Montserrat,sans-serif;font-size:28px;font-weight:800;color:#7ddba8;flex-shrink:0;border:2px solid rgba(125,219,168,.2)}
+        .s5-step-txt h3{font-family:Montserrat,sans-serif;font-size:44px;font-weight:700;color:#fff;margin-bottom:8px;letter-spacing:-.02em}
+        .s5-step-txt p{font-size:30px;color:rgba(255,255,255,.55);line-height:1.5}
+        .s5 .s-footer::before{background:rgba(255,255,255,.08)}
+        .s5 .s-logo{color:#fff}.s5 .s-logo em{color:#7ddba8}
+        .s5 .s-dot{background:rgba(255,255,255,.1)}.s5 .s-dot.active{background:#7ddba8}
+
+        /* ==============================
+           SLIDE 6 — CTA
+           ============================== */
+        .s6{background:#f8f7f5;display:flex;align-items:center;justify-content:center}
+        .s6-inner{text-align:center;z-index:1;position:relative;display:flex;flex-direction:column;align-items:center}
+        .s6-title{font-family:Montserrat,sans-serif;font-size:72px;font-weight:800;color:#1a1a18;letter-spacing:-.03em;margin-bottom:48px;line-height:1.1}
+        .s6-btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:28px 64px;background:#1a7a5a;color:#fff;font-family:Montserrat,sans-serif;font-size:36px;font-weight:700;border-radius:50px;margin-bottom:32px;box-shadow:0 8px 32px rgba(26,122,90,.3)}
+        .s6-arrow{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:40px}
+        .s6-arrow span{font-size:28px;color:#7a756f}
+        .s6-arrow svg{width:36px;height:36px;color:#1a7a5a;animation:bounce 1.5s ease-in-out infinite}
+        @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+        .s6-sub{font-size:30px;color:#9a958f}
+        .s6 .s-footer::before{background:#eae7e2}
+        .s6 .s-logo{color:#1a1a18}.s6 .s-logo em{color:#1a7a5a}
+        .s6 .s-dot{background:#e5e2de}.s6 .s-dot.active{background:#1a7a5a}
+
+        /* scale */
+        .slide{transform:scale(var(--s,.5));transform-origin:top center;margin-bottom:calc(-1080px * (1 - var(--s,.5)))}
+    </style>
+</head>
+<body>
+
+<div class="controls">
+    <span>me<em>d</em>en</span>
+    <button class="tab active" data-s=".5">50%</button>
+    <button class="tab" data-s=".75">75%</button>
+    <button class="tab" data-s="1">100%</button>
+    <span class="info">Clique direito em cada slide > "Salvar imagem como..." ou Print Screen</span>
+</div>
+
+<div class="gallery" id="gallery">
+
+<!-- SLIDE 1 — IMPACTO -->
+<div class="slide s1">
+    <svg class="s1-leaf" viewBox="0 0 80 80" fill="none" stroke="#1a7a5a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M38 72 C10 62,2 36,14 14 C20 4,34 0,48 4 C68 10,74 32,66 54 C60 70,46 76,38 72Z"/><path d="M32 70 C28 58,22 50,12 46"/><path d="M8 40 L24 40 L30 22 L38 52 L44 32 L50 40 L70 40"/></svg>
+    <div class="s1-inner">
+        <div class="s1-brand">me<em>d</em>en</div>
+        <div class="s1-tagline">Emagrecimento medico, do Nordeste para o Nordeste</div>
+        <div class="s1-arrived">A Meden chegou.</div>
+    </div>
+    <div class="s-footer">
+        <div class="s-logo">me<em>d</em>en</div>
+        <div class="s-dots"><div class="s-dot active"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div></div>
+    </div>
+</div>
+
+<!-- SLIDE 2 — IDENTIDADE REGIONAL -->
+<div class="slide s2">
+    <div class="s-orb s-orb-1"></div>
+    <div class="s-orb s-orb-2"></div>
+    <div class="s2-inner">
+        <div class="s2-pill">Nordeste</div>
+        <div class="s2-title">Saude digital feita <em>no Nordeste</em>, para o nordestino.</div>
+        <div class="s2-body">Atendimento pensado pra quem vive aqui. Sem distancia, sem espera, sem complicacao.</div>
+    </div>
+    <div class="s-footer">
+        <div class="s-logo">me<em>d</em>en</div>
+        <div class="s-dots"><div class="s-dot"></div><div class="s-dot active"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div></div>
+    </div>
+</div>
+
+<!-- SLIDE 3 — PROPOSTA DE VALOR -->
+<div class="slide s3">
+    <div class="s3-inner">
+        <div class="s3-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <div class="s3-title">Emagrecimento com acompanhamento <em>medico de verdade.</em></div>
+        <div class="s3-body">Nada de promessa milagrosa. Medicos especialistas, tratamento personalizado, resultado real.</div>
+        <div class="s3-badge"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Medicos licenciados pelo CFM</div>
+    </div>
+    <div class="s-footer">
+        <div class="s-logo">me<em>d</em>en</div>
+        <div class="s-dots"><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot active"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div></div>
+    </div>
+</div>
+
+<!-- SLIDE 4 — QUEBRA DE OBJECOES -->
+<div class="slide s4">
+    <div class="s-orb s-orb-1"></div>
+    <div class="s4-inner">
+        <div class="s4-lines">
+            <div class="s4-line"><div class="s4-x">&times;</div><div class="s4-text">Sem sair de casa.</div></div>
+            <div class="s4-line"><div class="s4-x">&times;</div><div class="s4-text">Sem fila.</div></div>
+            <div class="s4-line"><div class="s4-x">&times;</div><div class="s4-text">Sem complicacao.</div></div>
+        </div>
+        <div class="s4-sub">Tudo 100% online, no seu tempo, do conforto da sua casa. Do Nordeste para o Nordeste.</div>
+    </div>
+    <div class="s-footer">
+        <div class="s-logo">me<em>d</em>en</div>
+        <div class="s-dots"><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot active"></div><div class="s-dot"></div><div class="s-dot"></div></div>
+    </div>
+</div>
+
+<!-- SLIDE 5 — COMO FUNCIONA -->
+<div class="slide s5">
+    <div class="s-orb s-orb-1"></div>
+    <div class="s5-inner">
+        <div class="s5-label">Como funciona</div>
+        <div class="s5-steps">
+            <div class="s5-step">
+                <div class="s5-num">1</div>
+                <div class="s5-step-txt"><h3>Consulta com especialista</h3><p>Online, no horario que preferir.</p></div>
+            </div>
+            <div class="s5-step">
+                <div class="s5-num">2</div>
+                <div class="s5-step-txt"><h3>Tratamento personalizado</h3><p>Prescricao individual, se indicado.</p></div>
+            </div>
+            <div class="s5-step">
+                <div class="s5-num">3</div>
+                <div class="s5-step-txt"><h3>Entrega discreta na sua porta</h3><p>Embalagem neutra, em todo o Nordeste.</p></div>
+            </div>
+        </div>
+    </div>
+    <div class="s-footer">
+        <div class="s-logo">me<em>d</em>en</div>
+        <div class="s-dots"><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot active"></div><div class="s-dot"></div></div>
+    </div>
+</div>
+
+<!-- SLIDE 6 — CTA -->
+<div class="slide s6">
+    <div class="s6-inner">
+        <div class="s6-title">Simples assim.</div>
+        <div class="s6-btn">Comecar agora</div>
+        <div class="s6-arrow">
+            <span>Link na bio</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+        </div>
+        <div class="s6-sub">Avaliacao gratuita com medico especialista</div>
+    </div>
+    <div class="s-footer">
+        <div class="s-logo">me<em>d</em>en</div>
+        <div class="s-dots"><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot active"></div></div>
+    </div>
+</div>
+
+</div>
+
+<script>
+// zoom tabs
+document.querySelectorAll('.tab').forEach(function(t){
+    t.addEventListener('click',function(){
+        document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('active')});
+        t.classList.add('active');
+        document.querySelectorAll('.slide').forEach(function(s){s.style.setProperty('--s',t.dataset.s);s.style.marginBottom='calc(-1080px * (1 - '+t.dataset.s+'))'});
+    });
+});
+</script>
+</body>
+</html>
