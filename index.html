@@ -77,22 +77,22 @@
         @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
         .hero h1{font-family:Montserrat,sans-serif;font-size:clamp(2rem,4.5vw,3.4rem);font-weight:800;color:#fff;line-height:1.08;letter-spacing:-.03em;margin-bottom:18px}
         .hero h1 em{font-style:normal;color:#7ddba8}
-        .hero-p{font-size:clamp(.9rem,1.6vw,1.08rem);color:rgba(255,255,255,.65);line-height:1.65;max-width:460px;margin-bottom:32px}
+        .hero-p{font-size:clamp(1rem,1.8vw,1.15rem);color:rgba(255,255,255,.88);line-height:1.7;max-width:460px;margin-bottom:32px;font-weight:400}
         .hero-ctas{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
         .hero-visual{position:relative;display:flex;align-items:center;justify-content:center;padding:40px 0}
         .hero-img-wrap{position:relative;width:100%;max-width:420px;margin:0 auto}
         .hero-img{width:100%;height:480px;object-fit:cover;border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
         .hero-img-glow{position:absolute;inset:-20px;background:radial-gradient(ellipse,rgba(26,122,90,.3),transparent 70%);z-index:-1;border-radius:40px}
         /* floating cards */
-        .hero-float{position:absolute;background:rgba(255,255,255,.1);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:14px 18px;z-index:3;animation:bob 4s ease-in-out infinite}
+        .hero-float{position:absolute;background:rgba(20,20,18,.65);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px 18px;z-index:3;animation:bob 4s ease-in-out infinite;box-shadow:0 4px 20px rgba(0,0,0,.3)}
         @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
         .hero-float-1{top:10%;left:-20px;animation-delay:0s}
         .hero-float-2{bottom:15%;right:-16px;animation-delay:-2s}
         .hero-float-3{top:55%;left:-40px;animation-delay:-3.5s}
         .hf-row{display:flex;align-items:center;gap:8px}
         .hf-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700}
-        .hf-text{font-size:.72rem;color:rgba(255,255,255,.9);white-space:nowrap}
-        .hf-text strong{display:block;font-size:.85rem;color:#fff}
+        .hf-text{font-size:.72rem;color:rgba(255,255,255,.85);white-space:nowrap}
+        .hf-text strong{display:block;font-size:.88rem;color:#fff;margin-bottom:1px}
         .hf-stars{color:#f0a500;font-size:.7rem;letter-spacing:1px}
 
         /* ---- TICKER ---- */
@@ -321,8 +321,8 @@
     <div class="hero-inner">
         <div class="hero-ct">
             <div class="hero-badge rv"><span class="hero-dot"></span> Atendendo todo o Nordeste</div>
-            <h1 class="rv">Cansou de <em>tentar sozinho?</em></h1>
-            <p class="hero-p rv">Medicos especialistas, tratamento com GLP-1 e acompanhamento real — do primeiro dia ate o resultado. Online e no seu ritmo.</p>
+            <h1 class="rv">Ja tentou de tudo <em>e nada funciona?</em></h1>
+            <p class="hero-p rv">Agora voce tem acesso a medicos especialistas e tratamento com GLP-1, com acompanhamento real do primeiro dia ate o resultado. 100% online.</p>
             <div class="hero-ctas rv">
                 <a href="form.html" class="btn btn-g btn-lg">Quero minha avaliacao gratuita</a>
                 <a href="#como-funciona" class="btn btn-w">Como funciona</a>
@@ -331,26 +331,26 @@
         <div class="hero-visual rv">
             <div class="hero-img-wrap">
                 <div class="hero-img-glow"></div>
-                <img class="hero-img" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&h=600&fit=crop&crop=faces" alt="Medica especialista sorridente">
+                <img class="hero-img" src="https://images.unsplash.com/photo-1609505848912-b7c3b8b4beda?w=500&h=600&fit=crop&crop=faces" alt="Mulher sorridente e confiante apos emagrecimento">
                 <!-- Floating cards -->
                 <div class="hero-float hero-float-1">
                     <div class="hf-row">
-                        <div class="hf-icon" style="background:rgba(93,224,160,.2);color:#5ce0a0">&#10003;</div>
-                        <div class="hf-text"><strong>+2.000 pacientes</strong>atendidos no Nordeste</div>
+                        <div class="hf-icon" style="background:rgba(93,224,160,.25);color:#5ce0a0">&#10003;</div>
+                        <div class="hf-text"><strong>-14kg em 5 meses</strong>Renata, Recife</div>
                     </div>
                 </div>
                 <div class="hero-float hero-float-2">
                     <div class="hf-row">
-                        <div class="hf-icon" style="background:rgba(240,165,0,.2);color:#f0a500">&#9733;</div>
-                        <div class="hf-text"><strong>4.9 de avaliacao</strong><span class="hf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+                        <div class="hf-icon" style="background:rgba(240,165,0,.25);color:#f0a500">&#9733;</div>
+                        <div class="hf-text"><strong>Avaliacao gratuita</strong><span class="hf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
                     </div>
                 </div>
                 <div class="hero-float hero-float-3">
                     <div class="hf-row">
-                        <div class="hf-icon" style="background:rgba(255,255,255,.15);color:#fff">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                        <div class="hf-icon" style="background:rgba(93,224,160,.25);color:#5ce0a0">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                         </div>
-                        <div class="hf-text"><strong>Suporte 7 dias</strong>via WhatsApp</div>
+                        <div class="hf-text"><strong>100% online</strong>sem sair de casa</div>
                     </div>
                 </div>
             </div>
