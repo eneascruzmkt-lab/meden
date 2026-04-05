@@ -10,1050 +10,539 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://meden.com.br">
     <meta property="og:locale" content="pt_BR">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://meden.com.br">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
-
-    <!--
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX');
-    </script>
-    -->
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "MedicalClinic",
-        "name": "Meden",
-        "description": "Clínica de saúde digital focada em emagrecimento com acompanhamento médico online. Atendimento para todo o Nordeste do Brasil.",
-        "url": "https://meden.com.br",
-        "telephone": "+5584999999999",
-        "areaServed": { "@type": "Place", "name": "Nordeste do Brasil" },
-        "medicalSpecialty": "Endocrinology",
-        "availableService": {
-            "@type": "MedicalProcedure",
-            "name": "Consulta médica online para emagrecimento",
-            "procedureType": "http://schema.org/NoninvasiveProcedure"
-        }
-    }
-    </script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"MedicalClinic","name":"Meden","url":"https://meden.com.br","telephone":"+5584999999999","areaServed":{"@type":"Place","name":"Nordeste do Brasil"},"medicalSpecialty":"Endocrinology"}</script>
     <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --green:#1a7a5a;--green-hover:#15644a;--green-deep:#0a2e1f;
+            --green-light:#c8edda;--green-tint:#e9f6ef;--green-glow:rgba(26,122,90,.25);
+            --bg:#f7f6f4;--card:#fff;--text:#1a1a18;--body:#3d3a36;--muted:#7a756f;--light:#b0aca6;
+            --border:#eae7e2;--shadow:0 1px 2px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.06);
+            --shadow-lg:0 4px 12px rgba(0,0,0,.05),0 16px 48px rgba(0,0,0,.08);
+            --r:16px;--r-lg:24px;--pill:50px;
+        }
+        html{scroll-behavior:smooth;overflow-x:hidden}
+        body{font-family:'Red Hat Text',system-ui,sans-serif;color:var(--body);background:var(--bg);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+        img{max-width:100%;display:block;height:auto}
+        a{text-decoration:none;color:inherit}
+        .ctn{max-width:1100px;margin:0 auto;padding:0 24px}
 
-        :root {
-            --green: #1a7a5a;
-            --green-dark: #0f5c42;
-            --green-deep: #0a2e1f;
-            --green-light: #c8edda;
-            --green-tint: #e6f5ee;
-            --bg: #f8f7f5;
-            --bg-card: #ffffff;
-            --text: #1a1a18;
-            --text-body: #3a3632;
-            --text-muted: #6b6560;
-            --white: #ffffff;
-            --shadow: 0 .7px 3px -.6px #0000000d, 0 2px 8px -1.2px #0000000d, 0 4.2px 18px -1.8px #0000000d, 0 9.4px 40px -2.4px #0000000a, 0 24px 101px -3px #00000008;
-            --radius: 20px;
-            --radius-lg: 25px;
-            --radius-pill: 50px;
-        }
+        /* ---- NAV ---- */
+        .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 0;transition:background .4s,box-shadow .4s,padding .3s}
+        .nav.scrolled{background:rgba(247,246,244,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 6px rgba(0,0,0,.06);padding:10px 0}
+        .nav-in{display:flex;align-items:center;justify-content:space-between}
+        .logo{font-family:Montserrat,sans-serif;font-size:1.5rem;font-weight:800;color:#fff;letter-spacing:-.03em;transition:color .4s}
+        .nav.scrolled .logo{color:var(--green)}
+        .nav-links{display:flex;align-items:center;gap:28px}
+        .nav-links a{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.78);transition:color .2s}
+        .nav.scrolled .nav-links a{color:var(--muted)}
+        .nav-links a:hover{color:#fff}
+        .nav.scrolled .nav-links a:hover{color:var(--green)}
+        .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 28px;font-family:inherit;font-size:.9rem;font-weight:600;border:none;border-radius:var(--pill);cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s}
+        .btn-g{background:var(--green)!important;color:#fff!important;box-shadow:0 2px 12px var(--green-glow)}
+        .btn-g:hover{background:var(--green-hover)!important;transform:translateY(-1px);box-shadow:0 6px 24px var(--green-glow)}
+        .btn-w{background:#fff!important;color:var(--green)!important;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+        .btn-w:hover{background:#f2f1ef!important}
+        .btn-lg{padding:16px 36px;font-size:1rem}
+        .burger{display:none;background:0;border:0;cursor:pointer;width:28px;height:20px;position:relative;flex-shrink:0}
+        .burger span{display:block;width:100%;height:2px;background:#fff;border-radius:2px;position:absolute;left:0;transition:transform .3s,opacity .3s,background .4s}
+        .nav.scrolled .burger span{background:var(--text)}
+        .burger span:nth-child(1){top:0}.burger span:nth-child(2){top:9px}.burger span:nth-child(3){top:18px}
+        .burger.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}.burger.open span:nth-child(2){opacity:0}.burger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+        .mob-menu{display:none;position:fixed;top:56px;left:0;right:0;bottom:0;background:rgba(247,246,244,.98);backdrop-filter:blur(16px);z-index:99;padding:32px 24px;flex-direction:column;gap:8px}
+        .mob-menu.open{display:flex}
+        .mob-menu a{font-size:1.1rem;font-weight:600;color:var(--text);padding:14px 0;border-bottom:1px solid var(--border)}
+        .mob-menu .btn-g{margin-top:12px;text-align:center;border-bottom:0}
 
-        html { scroll-behavior: smooth; overflow-x: hidden; }
+        /* ---- HERO ---- */
+        .hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;background:linear-gradient(175deg,#0c3425 0%,#14694c 40%,#1a7a5a 55%,var(--bg) 100%)}
+        .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,var(--bg),transparent);pointer-events:none}
+        .hero-ct{position:relative;z-index:2;max-width:760px;padding:0 24px}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 18px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:var(--pill);font-size:.8rem;font-weight:500;color:rgba(255,255,255,.85);margin-bottom:28px;backdrop-filter:blur(6px)}
+        .hero-dot{width:7px;height:7px;background:#5ce0a0;border-radius:50%;animation:pulse 2s ease-in-out infinite}
+        @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+        .hero h1{font-family:Montserrat,sans-serif;font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:800;color:#fff;line-height:1.08;letter-spacing:-.03em;margin-bottom:20px}
+        .hero h1 em{font-style:normal;color:#7ddba8}
+        .hero-p{font-size:clamp(.95rem,1.8vw,1.15rem);color:rgba(255,255,255,.7);line-height:1.65;max-width:520px;margin:0 auto 36px}
+        .hero-ctas{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
 
-        body {
-            font-family: 'Red Hat Text', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--text-body);
-            background: var(--bg);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+        /* ---- TICKER ---- */
+        .ticker{overflow:hidden;background:var(--card);border-bottom:1px solid var(--border);padding:12px 0;position:relative;z-index:3}
+        .ticker-track{display:flex;gap:48px;animation:scroll 30s linear infinite;width:max-content}
+        .ticker-track:hover{animation-play-state:paused}
+        @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+        .ticker-item{display:flex;align-items:center;gap:8px;white-space:nowrap;font-size:.8rem;color:var(--muted)}
+        .ticker-item strong{color:var(--text);font-weight:600}
+        .ticker-dot{width:5px;height:5px;background:var(--green-light);border-radius:50%}
 
-        img { max-width: 100%; display: block; }
-        a { text-decoration: none; color: inherit; }
+        /* ---- VALUE STRIP ---- */
+        .values{padding:64px 0}
+        .values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+        .val{background:var(--card);border-radius:var(--r-lg);padding:28px 20px;text-align:center;box-shadow:var(--shadow);transition:transform .2s}
+        .val:hover{transform:translateY(-3px)}
+        .val-icon{width:44px;height:44px;background:var(--green-tint);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
+        .val-icon svg{width:22px;height:22px;color:var(--green)}
+        .val h4{font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:2px}
+        .val p{font-size:.75rem;color:var(--muted)}
 
-        .container { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+        /* ---- SECTION UTILS ---- */
+        .sec{padding:96px 0}
+        .sec-center{text-align:center}
+        .pill{display:inline-block;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--green);background:var(--green-tint);padding:5px 14px;border-radius:var(--pill);margin-bottom:16px}
+        .sec-title{font-family:Montserrat,sans-serif;font-size:clamp(1.5rem,3.5vw,2.4rem);font-weight:700;color:var(--text);line-height:1.12;letter-spacing:-.02em;margin-bottom:12px}
+        .sec-sub{font-size:.95rem;color:var(--muted);line-height:1.6;max-width:500px}
+        .sec-center .sec-sub{margin:0 auto}
 
-        /* ===== NAV ===== */
-        .nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            padding: 16px 0;
-            transition: background 0.4s, box-shadow 0.4s, padding 0.3s;
-        }
-        .nav.scrolled {
-            background: rgba(250, 249, 247, 0.92);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            box-shadow: 0 1px 8px rgba(0,0,0,0.06);
-            padding: 10px 0;
-        }
-        .nav-inner {
-            display: flex; align-items: center; justify-content: space-between;
-        }
-        .nav-logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem; font-weight: 800;
-            color: var(--white);
-            letter-spacing: -0.02em;
-            transition: color 0.4s;
-        }
-        .nav.scrolled .nav-logo { color: var(--green); }
-        .nav-links { display: flex; align-items: center; gap: 32px; }
-        .nav-links a {
-            font-size: 0.9rem; font-weight: 500;
-            color: rgba(255,255,255,0.8);
-            transition: color 0.3s;
-        }
-        .nav.scrolled .nav-links a { color: var(--text-muted); }
-        .nav-links a:hover { color: var(--white); }
-        .nav.scrolled .nav-links a:hover { color: var(--green); }
-        .btn-pill {
-            display: inline-flex; align-items: center; justify-content: center;
-            padding: 12px 28px;
-            font-family: inherit; font-size: 0.9rem; font-weight: 600;
-            background: var(--green) !important; color: var(--white) !important;
-            border: none; border-radius: var(--radius-pill);
-            cursor: pointer;
-            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-            box-shadow: 0 2px 10px rgba(26,122,90,0.3);
-        }
-        .btn-pill:hover { background: #15644a !important; color: var(--white) !important; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(26,122,90,0.35); }
-        .btn-pill:active { transform: translateY(0); }
-        .btn-pill-lg { padding: 16px 36px; font-size: 1rem; }
-        .btn-pill-outline {
-            background: transparent; color: var(--green);
-            border: 2px solid var(--green);
-            box-shadow: none;
-        }
-        .btn-pill-outline:hover { background: var(--green-tint); }
-        .btn-pill-white {
-            background: var(--white) !important; color: var(--green) !important;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-        }
-        .btn-pill-white:hover { background: #f0efec !important; color: var(--green) !important; }
+        /* ---- STEPS (timeline) ---- */
+        .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;position:relative}
+        .steps-grid::before{content:'';position:absolute;top:130px;left:16.66%;right:16.66%;height:3px;background:var(--green-tint);border-radius:3px;z-index:0}
+        .step{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow);overflow:hidden;position:relative;z-index:1;transition:transform .3s,box-shadow .3s}
+        .step:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+        .step-img{width:100%;height:190px;object-fit:cover}
+        .step-bd{padding:24px}
+        .step-n{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:var(--green);color:#fff;font-size:.8rem;font-weight:700;border-radius:50%;margin-bottom:12px}
+        .step-bd h3{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:6px}
+        .step-bd p{font-size:.85rem;color:var(--muted);line-height:1.55}
 
-        .nav-mobile-btn {
-            display: none; background: none; border: none; cursor: pointer;
-            width: 32px; height: 32px; position: relative;
-        }
-        .nav-mobile-btn span {
-            display: block; width: 22px; height: 2px; background: var(--white);
-            border-radius: 2px; position: absolute; left: 5px;
-            transition: transform 0.3s, opacity 0.3s, background 0.4s;
-        }
-        .nav.scrolled .nav-mobile-btn span { background: var(--text); }
-        .nav-mobile-btn span:nth-child(1) { top: 9px; }
-        .nav-mobile-btn span:nth-child(2) { top: 15px; }
-        .nav-mobile-btn span:nth-child(3) { top: 21px; }
+        /* ---- PRODUCT ---- */
+        .product{padding:96px 0}
+        .prod-card{background:linear-gradient(158deg,var(--green-tint) 0%,var(--card) 50%);border-radius:var(--r-lg);box-shadow:var(--shadow-lg);overflow:hidden}
+        .prod-in{display:grid;grid-template-columns:1fr 1fr;min-height:500px}
+        .prod-txt{padding:52px 44px;display:flex;flex-direction:column;justify-content:center}
+        .prod-txt .pill{align-self:flex-start}
+        .prod-txt h2{font-family:Montserrat,sans-serif;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;color:var(--text);line-height:1.15;letter-spacing:-.02em;margin-bottom:14px}
+        .prod-txt>p{font-size:.9rem;color:var(--muted);line-height:1.65;margin-bottom:24px}
+        .checks{list-style:none;margin-bottom:28px}
+        .checks li{display:flex;align-items:center;gap:10px;padding:7px 0;font-size:.88rem;color:var(--body)}
+        .checks svg{flex-shrink:0;width:18px;height:18px;color:var(--green)}
+        .prod-img{position:relative;overflow:hidden}
+        .prod-img img{width:100%;height:100%;object-fit:cover}
 
-        /* ===== HERO ===== */
-        .hero {
-            min-height: 100vh;
-            display: flex; align-items: center; justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(180deg, #0f3d2e 0%, #1a7a5a 45%, var(--bg) 100%);
-        }
-        .hero::before {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(ellipse at 50% 30%, rgba(26,122,90,0.25) 0%, transparent 70%);
-        }
-        .hero-content {
-            position: relative; z-index: 2;
-            max-width: 800px; padding: 0 24px;
-        }
-        .hero-badge {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 8px 20px;
-            background: rgba(255,255,255,0.12);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: var(--radius-pill);
-            font-size: 0.85rem; font-weight: 500;
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 32px;
-            backdrop-filter: blur(8px);
-        }
-        .hero-badge-dot {
-            width: 8px; height: 8px; background: #5ce0a0;
-            border-radius: 50%;
-            animation: pulse-dot 2s ease-in-out infinite;
-        }
-        @keyframes pulse-dot {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.3); }
-        }
-        .hero h1 {
-            font-family: 'Red Hat Text', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4.2rem);
-            font-weight: 700;
-            color: var(--white);
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            margin-bottom: 24px;
-        }
-        .hero h1 em {
-            font-style: normal;
-            color: #7ddba8;
-        }
-        .hero-sub {
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            color: rgba(255,255,255,0.75);
-            line-height: 1.6;
-            max-width: 560px;
-            margin: 0 auto 40px;
-        }
-        .hero-cta-group {
-            display: flex; align-items: center; justify-content: center;
-            gap: 16px; flex-wrap: wrap;
-        }
+        /* ---- AUDIENCE ---- */
+        .audience .aud-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:48px}
+        .aud{background:var(--card);border-radius:var(--r);padding:24px;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow);transition:transform .2s}
+        .aud:hover{transform:translateY(-2px)}
+        .aud-ic{flex-shrink:0;width:44px;height:44px;background:var(--green-tint);border-radius:12px;display:flex;align-items:center;justify-content:center}
+        .aud-ic svg{width:22px;height:22px;color:var(--green)}
+        .aud p{font-size:.9rem;color:var(--body);font-weight:500;line-height:1.45}
 
-        /* ===== VALUE STRIP ===== */
-        .value-strip {
-            padding: 0;
-            margin-top: -60px;
-            position: relative; z-index: 3;
-        }
-        .value-strip-inner {
-            background: var(--bg-card);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow);
-            display: grid; grid-template-columns: repeat(4, 1fr);
-            overflow: hidden;
-        }
-        .value-item {
-            padding: 32px 24px;
-            text-align: center;
-            border-right: 1px solid #f0eeeb;
-        }
-        .value-item:last-child { border-right: none; }
-        .value-icon {
-            width: 48px; height: 48px;
-            background: var(--green-tint);
-            border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 14px;
-        }
-        .value-icon svg { width: 24px; height: 24px; color: var(--green); }
-        .value-item h4 {
-            font-size: 0.9rem; font-weight: 600;
-            color: var(--text); margin-bottom: 4px;
-        }
-        .value-item p {
-            font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;
-        }
+        /* ---- INCLUDED ---- */
+        .incl{background:linear-gradient(158deg,#145e44,#0a2e1f);border-radius:var(--r-lg);padding:72px 48px;margin:0 auto;max-width:1100px;color:#fff}
+        .incl .pill{background:rgba(255,255,255,.1);color:#7ddba8}
+        .incl .sec-title{color:#fff}
+        .incl .sec-sub{color:rgba(255,255,255,.6)}
+        .incl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:48px}
+        .incl-item{display:flex;align-items:flex-start;gap:12px;padding:20px;background:rgba(255,255,255,.06);border-radius:var(--r);border:1px solid rgba(255,255,255,.07)}
+        .incl-ck{flex-shrink:0;width:28px;height:28px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center}
+        .incl-ck svg{width:14px;height:14px;color:#7ddba8}
+        .incl-item h4{font-size:.9rem;font-weight:600;margin-bottom:3px}
+        .incl-item p{font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.5}
 
-        /* ===== SECTIONS ===== */
-        .section { padding: 100px 0; }
-        .section-label {
-            display: inline-block;
-            font-size: 0.75rem; font-weight: 600;
-            letter-spacing: 0.12em; text-transform: uppercase;
-            color: var(--green);
-            background: var(--green-tint);
-            padding: 6px 16px;
-            border-radius: var(--radius-pill);
-            margin-bottom: 20px;
-        }
-        .section-title {
-            font-family: 'Red Hat Text', sans-serif;
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
-            font-weight: 700; color: var(--text);
-            line-height: 1.15; letter-spacing: -0.02em;
-            margin-bottom: 16px;
-        }
-        .section-sub {
-            font-size: 1.05rem; color: var(--text-muted);
-            line-height: 1.6; max-width: 560px;
-        }
+        /* ---- TESTIMONIALS (scroll) ---- */
+        .testi-scroll{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:48px 0 16px;margin:0 -24px;padding-left:24px;padding-right:24px;scrollbar-width:none;cursor:grab}
+        .testi-scroll::-webkit-scrollbar{display:none}
+        .testi-scroll:active{cursor:grabbing}
+        .testi-card{flex:0 0 340px;scroll-snap-align:start;background:var(--card);border-radius:var(--r-lg);padding:28px;box-shadow:var(--shadow)}
+        .testi-stars{color:#e8a500;font-size:.8rem;letter-spacing:2px;margin-bottom:14px}
+        .testi-txt{font-size:.88rem;color:var(--body);line-height:1.65;margin-bottom:20px}
+        .testi-who{display:flex;align-items:center;gap:10px}
+        .testi-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:#fff}
+        .testi-name{font-size:.82rem;font-weight:600;color:var(--text)}
+        .testi-meta{font-size:.72rem;color:var(--muted)}
 
-        /* ===== COMO FUNCIONA ===== */
-        .steps { background: var(--bg); }
-        .steps-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 24px; margin-top: 56px;
-        }
-        .step-card {
-            background: var(--bg-card);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .step-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
-        .step-img { width: 100%; height: 200px; object-fit: cover; }
-        .step-body { padding: 28px; }
-        .step-num {
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 36px; height: 36px;
-            background: var(--green); color: var(--white);
-            font-size: 0.85rem; font-weight: 700;
-            border-radius: 50%; margin-bottom: 14px;
-        }
-        .step-body h3 {
-            font-size: 1.15rem; font-weight: 700;
-            color: var(--text); margin-bottom: 8px;
-        }
-        .step-body p {
-            font-size: 0.9rem; color: var(--text-muted); line-height: 1.55;
-        }
+        /* ---- FAQ ---- */
+        .faq-list{max-width:680px;margin:48px auto 0}
+        .faq-item{background:var(--card);border-radius:var(--r);margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.03);overflow:hidden}
+        .faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;padding:20px 24px;font-family:inherit;font-size:.9rem;font-weight:600;color:var(--text);background:0;border:0;cursor:pointer;text-align:left;gap:14px;transition:color .2s}
+        .faq-q:hover{color:var(--green)}
+        .faq-ic{flex-shrink:0;width:22px;height:22px;transition:transform .3s}
+        .faq-item.open .faq-ic{transform:rotate(45deg)}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+        .faq-a-in{padding:0 24px 20px;font-size:.85rem;color:var(--muted);line-height:1.7}
 
-        /* ===== PRODUCT SECTION (GLP-1) ===== */
-        .product-section {
-            padding: 100px 0;
-        }
-        .product-card {
-            background: linear-gradient(158deg, var(--green-tint) 0%, var(--bg-card) 60%);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow);
-            overflow: hidden;
-        }
-        .product-inner {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 0; min-height: 520px;
-        }
-        .product-text {
-            padding: 60px 48px;
-            display: flex; flex-direction: column; justify-content: center;
-        }
-        .product-text .section-label { align-self: flex-start; }
-        .product-text h2 {
-            font-family: 'Red Hat Text', sans-serif;
-            font-size: clamp(1.6rem, 3vw, 2.4rem);
-            font-weight: 700; color: var(--text);
-            line-height: 1.15; letter-spacing: -0.02em;
-            margin-bottom: 16px;
-        }
-        .product-text > p {
-            font-size: 1rem; color: var(--text-muted);
-            line-height: 1.65; margin-bottom: 28px;
-        }
-        .check-list { list-style: none; margin-bottom: 32px; }
-        .check-list li {
-            display: flex; align-items: center; gap: 12px;
-            padding: 8px 0;
-            font-size: 0.95rem; color: var(--text-body);
-        }
-        .check-list li svg {
-            flex-shrink: 0; width: 20px; height: 20px; color: var(--green);
-        }
-        .product-img {
-            position: relative; overflow: hidden;
-        }
-        .product-img img {
-            width: 100%; height: 100%; object-fit: cover;
-        }
+        /* ---- CTA BANNER ---- */
+        .cta-banner{text-align:center;padding:80px 24px;background:linear-gradient(158deg,var(--green-tint),#f2ede8);border-radius:var(--r-lg);margin:0 24px 96px}
+        .cta-banner .sec-title{max-width:500px;margin:0 auto 12px}
+        .cta-banner .sec-sub{margin:0 auto 28px}
 
-        /* ===== PARA QUEM ===== */
-        .audience { background: var(--bg); }
-        .audience-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr);
-            gap: 20px; margin-top: 48px;
-        }
-        .audience-card {
-            background: var(--bg-card);
-            border-radius: var(--radius);
-            padding: 28px 24px;
-            display: flex; align-items: center; gap: 16px;
-            box-shadow: var(--shadow);
-            transition: transform 0.2s;
-        }
-        .audience-card:hover { transform: translateY(-2px); }
-        .audience-icon {
-            flex-shrink: 0;
-            width: 48px; height: 48px;
-            background: var(--green-tint);
-            border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .audience-icon svg { width: 24px; height: 24px; color: var(--green); }
-        .audience-card p { font-size: 0.95rem; color: var(--text-body); font-weight: 500; line-height: 1.45; }
+        /* ---- GUARANTEE ---- */
+        .guar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+        .guar{text-align:center;padding:32px 20px;background:var(--card);border-radius:var(--r);box-shadow:var(--shadow)}
+        .guar-ic{width:48px;height:48px;background:var(--green-tint);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+        .guar-ic svg{width:24px;height:24px;color:var(--green)}
+        .guar h4{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:3px}
+        .guar p{font-size:.78rem;color:var(--muted)}
 
-        /* ===== INCLUDED ===== */
-        .included {
-            background: linear-gradient(158deg, #145e44 0%, #0a2e1f 100%);
-            border-radius: var(--radius-lg);
-            padding: 80px 56px;
-            margin: 0 24px;
-            color: var(--white);
-        }
-        .included .section-label { background: rgba(255,255,255,0.1); color: #7ddba8; }
-        .included .section-title { color: var(--white); }
-        .included .section-sub { color: rgba(255,255,255,0.65); }
-        .included-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr);
-            gap: 20px; margin-top: 48px;
-        }
-        .included-item {
-            display: flex; align-items: flex-start; gap: 14px;
-            padding: 22px;
-            background: rgba(255,255,255,0.07);
-            border-radius: var(--radius);
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-        .included-item .ic {
-            flex-shrink: 0;
-            width: 32px; height: 32px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .included-item .ic svg { width: 16px; height: 16px; color: #7ddba8; }
-        .included-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; color: var(--white); }
-        .included-item p { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+        /* ---- FOOTER ---- */
+        .footer{background:linear-gradient(166deg,#145e44,#071a10);color:rgba(255,255,255,.55);padding:56px 0 32px}
+        .ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
+        .ft-logo{font-family:Montserrat,sans-serif;font-size:1.3rem;font-weight:800;color:#fff}
+        .ft-tag{font-size:.82rem;color:rgba(255,255,255,.35);margin-top:6px;margin-bottom:16px}
+        .ft-contact p{font-size:.8rem;color:rgba(255,255,255,.4);margin-bottom:4px}
+        .ft-col-t{font-size:.72rem;font-weight:600;color:#fff;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+        .ft-col a{display:block;font-size:.8rem;color:rgba(255,255,255,.4);padding:3px 0;transition:color .2s}
+        .ft-col a:hover{color:#fff}
+        .ft-btm{padding-top:28px;border-top:1px solid rgba(255,255,255,.07)}
+        .ft-legal{font-size:.65rem;color:rgba(255,255,255,.25);line-height:1.7;max-width:720px;margin-bottom:12px}
+        .ft-copy{font-size:.7rem;color:rgba(255,255,255,.2)}
 
-        /* ===== TESTIMONIALS ===== */
-        .testimonials { background: var(--bg); }
-        .testimonials-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 20px; margin-top: 56px;
-        }
-        .testimonial-card {
-            background: var(--bg-card);
-            border-radius: var(--radius);
-            padding: 32px;
-            box-shadow: var(--shadow);
-        }
-        .testimonial-stars { color: #f0a500; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 16px; }
-        .testimonial-text {
-            font-size: 0.9rem; color: var(--text-body);
-            line-height: 1.65; margin-bottom: 24px;
-        }
-        .testimonial-author { display: flex; align-items: center; gap: 12px; }
-        .testimonial-avatar {
-            width: 44px; height: 44px; border-radius: 100%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.9rem; font-weight: 700; color: var(--white);
-        }
-        .testimonial-name { font-size: 0.85rem; font-weight: 600; color: var(--text); }
-        .testimonial-meta { font-size: 0.75rem; color: var(--text-muted); }
+        /* ---- FLOATING CTA (mobile) ---- */
+        .float-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:90;padding:12px 16px;background:rgba(247,246,244,.95);backdrop-filter:blur(12px);border-top:1px solid var(--border);transform:translateY(100%);transition:transform .3s}
+        .float-cta.show{transform:translateY(0)}
+        .float-cta .btn{width:100%}
 
-        /* (form moved to form.html) */
+        /* ---- REVEAL ---- */
+        .rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+        .rv.vis{opacity:1;transform:translateY(0)}
 
-        /* ===== FAQ ===== */
-        .faq { background: var(--bg); }
-        .faq-list { max-width: 720px; margin: 56px auto 0; }
-        .faq-item {
-            background: var(--bg-card);
-            border-radius: var(--radius);
-            margin-bottom: 12px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-            overflow: hidden;
+        /* ---- RESPONSIVE ---- */
+        @media(max-width:900px){
+            .nav-links{display:none}.burger{display:block}
+            .values-grid{grid-template-columns:1fr 1fr}
+            .steps-grid{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto}
+            .steps-grid::before{display:none}
+            .prod-in{grid-template-columns:1fr}
+            .prod-img{height:280px}.prod-img img{height:100%}
+            .prod-txt{padding:36px 28px}
+            .audience .aud-grid{grid-template-columns:1fr}
+            .incl{margin:0 16px;padding:48px 24px}
+            .incl-grid{grid-template-columns:1fr}
+            .testi-card{flex:0 0 300px}
+            .guar-grid{grid-template-columns:1fr;max-width:360px;margin-left:auto;margin-right:auto}
+            .ft-grid{grid-template-columns:1fr;gap:28px}
+            .float-cta{display:block}
         }
-        .faq-question {
-            width: 100%;
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 22px 28px;
-            font-family: inherit; font-size: 0.95rem; font-weight: 600;
-            color: var(--text);
-            background: none; border: none; cursor: pointer;
-            text-align: left; gap: 16px;
-            transition: color 0.2s;
+        @media(max-width:600px){
+            .ctn{padding:0 16px}
+            .sec{padding:64px 0}
+            .nav{padding:10px 0}
+            .logo{font-size:1.3rem}
+            .hero h1{font-size:2rem}
+            .hero-p{font-size:.9rem}
+            .hero-ctas{flex-direction:column}.hero-ctas .btn{width:100%}
+            .values{padding:40px 0}
+            .values-grid{gap:10px}
+            .val{padding:20px 14px}
+            .val h4{font-size:.78rem}
+            .step-img{height:160px}
+            .product{padding:64px 0}
+            .prod-txt{padding:24px 20px}
+            .prod-txt h2{font-size:1.3rem}
+            .incl{margin:0 8px;padding:36px 18px;border-radius:var(--r)}
+            .testi-card{flex:0 0 280px;padding:22px}
+            .cta-banner{margin:0 8px 64px;padding:48px 20px;border-radius:var(--r)}
+            .faq-q{padding:16px 18px;font-size:.85rem}
+            .faq-a-in{padding:0 18px 16px;font-size:.82rem}
+            .sec-title{font-size:1.4rem}
+            .footer{padding:40px 0 24px}
         }
-        .faq-question:hover { color: var(--green); }
-        .faq-icon {
-            flex-shrink: 0; width: 24px; height: 24px;
-            transition: transform 0.3s;
-        }
-        .faq-item.open .faq-icon { transform: rotate(45deg); }
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
-        .faq-answer-inner {
-            padding: 0 28px 22px;
-            font-size: 0.9rem; color: var(--text-muted); line-height: 1.7;
-        }
-
-        /* ===== GUARANTEE ===== */
-        .guarantee { padding: 80px 0; background: var(--bg); }
-        .guarantee-inner {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-        .guarantee-item {
-            text-align: center;
-            padding: 36px 24px;
-            background: var(--bg-card);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-        }
-        .guarantee-icon {
-            width: 56px; height: 56px;
-            background: var(--green-tint);
-            border-radius: 16px;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 16px;
-        }
-        .guarantee-icon svg { width: 28px; height: 28px; color: var(--green); }
-        .guarantee-item h4 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-        .guarantee-item p { font-size: 0.85rem; color: var(--text-muted); }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            background: linear-gradient(166deg, #145e44 0%, #091e14 100%);
-            color: rgba(255,255,255,0.6);
-            padding: 64px 0 36px;
-        }
-        .footer-grid {
-            display: grid; grid-template-columns: 2fr 1fr 1fr;
-            gap: 48px; margin-bottom: 48px;
-        }
-        .footer-logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.4rem; font-weight: 800; color: var(--white);
-        }
-        .footer-tagline { font-size: 0.9rem; color: rgba(255,255,255,0.45); margin-top: 8px; margin-bottom: 20px; }
-        .footer-contact p {
-            font-size: 0.85rem; color: rgba(255,255,255,0.5);
-            margin-bottom: 6px;
-        }
-        .footer-col-title { font-size: 0.8rem; font-weight: 600; color: var(--white); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
-        .footer-col a {
-            display: block; font-size: 0.85rem; color: rgba(255,255,255,0.5);
-            padding: 4px 0; transition: color 0.2s;
-        }
-        .footer-col a:hover { color: var(--white); }
-        .footer-bottom {
-            padding-top: 32px;
-            border-top: 1px solid rgba(255,255,255,0.08);
-        }
-        .footer-legal {
-            font-size: 0.7rem; color: rgba(255,255,255,0.3);
-            line-height: 1.7; max-width: 800px; margin-bottom: 16px;
-        }
-        .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
-
-        /* ===== SCROLL REVEAL ===== */
-        .reveal {
-            opacity: 0;
-            filter: blur(8px);
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, filter 0.8s ease, transform 0.8s ease;
-        }
-        .reveal.visible {
-            opacity: 1;
-            filter: blur(0);
-            transform: translateY(0);
-        }
-
-        /* ===== RESPONSIVE: TABLET ===== */
-        @media (max-width: 900px) {
-            .nav-links { display: none; }
-            .nav-mobile-btn { display: block; }
-            .value-strip-inner { grid-template-columns: repeat(2, 1fr); }
-            .value-item:nth-child(2) { border-right: none; }
-            .steps-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
-            .product-inner { grid-template-columns: 1fr; }
-            .product-img { height: 300px; }
-            .product-img img { height: 100%; }
-            .product-text { padding: 40px 32px; }
-            .audience-grid { grid-template-columns: 1fr; }
-            .included { margin: 0 16px; padding: 56px 28px; }
-            .included-grid { grid-template-columns: 1fr; }
-            .testimonials-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
-            .guarantee-inner { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
-            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-        }
-
-        /* ===== RESPONSIVE: MOBILE ===== */
-        @media (max-width: 600px) {
-            .container { padding: 0 16px; }
-            .section { padding: 64px 0; }
-            .nav { padding: 12px 0; }
-            .nav-logo { font-size: 1.3rem; }
-            .hero { min-height: 100svh; }
-            .hero h1 { font-size: 2rem; }
-            .hero-sub { font-size: 0.95rem; }
-            .hero-cta-group { flex-direction: column; }
-            .hero-cta-group .btn-pill { width: 100%; }
-            .value-strip { margin-top: -40px; }
-            .value-strip-inner { grid-template-columns: 1fr 1fr; }
-            .value-item { padding: 20px 16px; }
-            .value-item h4 { font-size: 0.8rem; }
-            .step-img { height: 170px; }
-            .step-body { padding: 22px; }
-            .product-section { padding: 64px 0; }
-            .product-text { padding: 28px 22px; }
-            .product-text h2 { font-size: 1.5rem; }
-            .included { margin: 0 8px; padding: 40px 20px; border-radius: var(--radius); }
-            .faq-question { padding: 18px 20px; font-size: 0.9rem; }
-            .faq-answer-inner { padding: 0 20px 18px; font-size: 0.85rem; }
-            .footer { padding: 48px 0 28px; }
-            .section-title { font-size: 1.5rem; }
-        }
-
-        @media (max-width: 380px) {
-            .hero h1 { font-size: 1.7rem; }
-            .value-strip-inner { grid-template-columns: 1fr; }
-            .value-item { border-right: none; border-bottom: 1px solid #f0eeeb; }
-            .value-item:last-child { border-bottom: none; }
+        @media(max-width:380px){
+            .hero h1{font-size:1.7rem}
+            .values-grid{grid-template-columns:1fr}
         }
     </style>
 </head>
 <body>
 
-    <!-- NAV -->
-    <nav class="nav" id="nav">
-        <div class="container nav-inner">
-            <a href="#" class="nav-logo">meden</a>
-            <div class="nav-links">
-                <a href="#como-funciona">Como funciona</a>
-                <a href="#programa">Programa</a>
-                <a href="#depoimentos">Depoimentos</a>
-                <a href="#duvidas">Duvidas</a>
-                <a href="form.html" class="btn-pill">Comece agora</a>
-            </div>
-            <button class="nav-mobile-btn" id="mobileMenuBtn" aria-label="Menu">
-                <span></span><span></span><span></span>
-            </button>
+<!-- NAV -->
+<nav class="nav" id="nav">
+    <div class="ctn nav-in">
+        <a href="/" class="logo">meden</a>
+        <div class="nav-links">
+            <a href="#como-funciona">Como funciona</a>
+            <a href="#programa">Programa</a>
+            <a href="#depoimentos">Depoimentos</a>
+            <a href="#duvidas">Duvidas</a>
+            <a href="form.html" class="btn btn-g">Comece agora</a>
         </div>
-    </nav>
+        <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+</nav>
+<div class="mob-menu" id="mobMenu">
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#programa">Programa</a>
+    <a href="#depoimentos">Depoimentos</a>
+    <a href="#duvidas">Duvidas</a>
+    <a href="form.html" class="btn btn-g">Comece agora</a>
+</div>
 
-    <!-- HERO -->
-    <section class="hero" id="inicio">
-        <div class="hero-content">
-            <div class="hero-badge reveal">
-                <span class="hero-badge-dot"></span>
-                Atendendo todo o Nordeste
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-ct">
+        <div class="hero-badge rv"><span class="hero-dot"></span> Atendendo todo o Nordeste</div>
+        <h1 class="rv">Emagrecimento <em>medico</em>, do Nordeste para o Nordeste.</h1>
+        <p class="hero-p rv">Consulta gratuita com medico especialista. Tratamento personalizado com acompanhamento real. Entrega discreta em casa.</p>
+        <div class="hero-ctas rv">
+            <a href="form.html" class="btn btn-g btn-lg">Quero minha avaliacao gratuita</a>
+            <a href="#como-funciona" class="btn btn-w">Como funciona</a>
+        </div>
+    </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+    <div class="ticker-track" id="ticker">
+        <div class="ticker-item"><span class="ticker-dot"></span> <strong>Renata de Recife</strong> iniciou o tratamento</div>
+        <div class="ticker-item"><span class="ticker-dot"></span> <strong>Marcos de Natal</strong> perdeu 9kg em 3 meses</div>
+        <div class="ticker-item"><span class="ticker-dot"></span> <strong>Ana de Fortaleza</strong> perdeu 11kg em 4 meses</div>
+        <div class="ticker-item"><span class="ticker-dot"></span> <strong>Carlos de Salvador</strong> iniciou acompanhamento</div>
+        <div class="ticker-item"><span class="ticker-dot"></span> <strong>Juliana de Joao Pessoa</strong> perdeu 7kg em 2 meses</div>
+        <div class="ticker-item"><span class="ticker-dot"></span> <strong>Pedro de Maceio</strong> iniciou o tratamento</div>
+    </div>
+</div>
+
+<!-- VALUES -->
+<section class="values">
+    <div class="ctn">
+        <div class="values-grid rv">
+            <div class="val">
+                <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+                <h4>Medicos pelo CFM</h4>
+                <p>Profissionais licenciados</p>
             </div>
-            <h1 class="reveal">Emagrecimento <em>medical</em>, do Nordeste para o Nordeste.</h1>
-            <p class="hero-sub reveal">Consulta gratuita com medico especialista. Tratamento personalizado com acompanhamento real. Entrega discreta em casa.</p>
-            <div class="hero-cta-group reveal">
-                <a href="form.html" class="btn-pill btn-pill-lg">Quero minha avaliacao gratuita</a>
-                <a href="#como-funciona" class="btn-pill btn-pill-white">Como funciona</a>
+            <div class="val">
+                <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+                <h4>100% Online</h4>
+                <p>Do conforto da sua casa</p>
+            </div>
+            <div class="val">
+                <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                <h4>Preco transparente</h4>
+                <p>Sem taxas escondidas</p>
+            </div>
+            <div class="val">
+                <div class="val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+                <h4>Entrega em casa</h4>
+                <p>Discreta e rastreavel</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- VALUE STRIP -->
-    <div class="value-strip">
-        <div class="container">
-            <div class="value-strip-inner reveal">
-                <div class="value-item">
-                    <div class="value-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-                    </div>
-                    <h4>Medicos pelo CFM</h4>
-                    <p>Profissionais licenciados</p>
+<!-- COMO FUNCIONA -->
+<section class="sec" id="como-funciona">
+    <div class="ctn">
+        <div class="sec-center rv">
+            <span class="pill">Como funciona</span>
+            <h2 class="sec-title">Simples, rapido e sem burocracia</h2>
+            <p class="sec-sub">Voce comeca agora e fala com um medico ainda esta semana.</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step rv">
+                <img class="step-img" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=280&fit=crop&crop=center" alt="Pessoa usando celular" loading="lazy">
+                <div class="step-bd">
+                    <div class="step-n">1</div>
+                    <h3>Preencha o formulario</h3>
+                    <p>Avaliacao gratuita em 2 minutos. Conte um pouco sobre voce e seus objetivos.</p>
                 </div>
-                <div class="value-item">
-                    <div class="value-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                    </div>
-                    <h4>100% Online</h4>
-                    <p>Do conforto da sua casa</p>
+            </div>
+            <div class="step rv">
+                <img class="step-img" src="https://images.unsplash.com/photo-1609902726285-00668009f004?w=500&h=280&fit=crop&crop=faces" alt="Medico em teleconsulta" loading="lazy">
+                <div class="step-bd">
+                    <div class="step-n">2</div>
+                    <h3>Fale com nosso medico</h3>
+                    <p>Teleconsulta online no horario que preferir. Tudo pelo celular, com total privacidade.</p>
                 </div>
-                <div class="value-item">
-                    <div class="value-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    </div>
-                    <h4>Preco transparente</h4>
-                    <p>Sem taxas escondidas</p>
-                </div>
-                <div class="value-item">
-                    <div class="value-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-                    </div>
-                    <h4>Entrega em casa</h4>
-                    <p>Discreta e rastreavel</p>
+            </div>
+            <div class="step rv">
+                <img class="step-img" src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=500&h=280&fit=crop&crop=center" alt="Entrega em casa" loading="lazy">
+                <div class="step-bd">
+                    <div class="step-n">3</div>
+                    <h3>Receba em casa</h3>
+                    <p>Tratamento personalizado entregue discretamente na sua porta, em todo o Nordeste.</p>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- COMO FUNCIONA -->
-    <section class="section steps" id="como-funciona">
-        <div class="container">
-            <div style="text-align:center" class="reveal">
-                <span class="section-label">Como funciona</span>
-                <h2 class="section-title">Simples, rapido e sem burocracia</h2>
-                <p class="section-sub" style="margin:0 auto">Voce comeca agora e fala com um medico ainda esta semana.</p>
-            </div>
-            <div class="steps-grid">
-                <div class="step-card reveal">
-                    <img class="step-img" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=300&fit=crop&crop=center" alt="Pessoa usando celular para preencher formulario" loading="lazy">
-                    <div class="step-body">
-                        <div class="step-num">1</div>
-                        <h3>Preencha o formulario</h3>
-                        <p>Avaliacao gratuita em 2 minutos. Conte um pouco sobre voce e seus objetivos.</p>
-                    </div>
+<!-- PRODUCT -->
+<section class="product" id="programa">
+    <div class="ctn">
+        <div class="prod-card rv">
+            <div class="prod-in">
+                <div class="prod-txt">
+                    <span class="pill">Emagrecimento com GLP-1</span>
+                    <h2>Tratamento medico personalizado para perda de peso</h2>
+                    <p>Programa completo com acompanhamento do inicio ao fim. Nosso medico avalia se o GLP-1 e indicado para voce e cria um plano personalizado.</p>
+                    <ul class="checks">
+                        <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Consulta medica online</li>
+                        <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Prescricao personalizada (se indicado)</li>
+                        <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Acompanhamento nutricional</li>
+                        <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Suporte WhatsApp 7 dias por semana</li>
+                        <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Entrega discreta em casa</li>
+                        <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Retornos e ajustes inclusos</li>
+                    </ul>
+                    <a href="form.html" class="btn btn-g btn-lg" style="align-self:flex-start">Comece agora</a>
                 </div>
-                <div class="step-card reveal">
-                    <img class="step-img" src="https://images.unsplash.com/photo-1609902726285-00668009f004?w=500&h=300&fit=crop&crop=faces" alt="Medico em teleconsulta online" loading="lazy">
-                    <div class="step-body">
-                        <div class="step-num">2</div>
-                        <h3>Fale com nosso medico</h3>
-                        <p>Teleconsulta online no horario que preferir. Tudo pelo celular, com total privacidade.</p>
-                    </div>
-                </div>
-                <div class="step-card reveal">
-                    <img class="step-img" src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=500&h=300&fit=crop&crop=center" alt="Pacote sendo entregue em casa" loading="lazy">
-                    <div class="step-body">
-                        <div class="step-num">3</div>
-                        <h3>Receba em casa</h3>
-                        <p>Tratamento personalizado entregue discretamente na sua porta, em todo o Nordeste.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PRODUCT SECTION (GLP-1) -->
-    <section class="product-section" id="programa">
-        <div class="container">
-            <div class="product-card reveal">
-                <div class="product-inner">
-                    <div class="product-text">
-                        <span class="section-label">Emagrecimento com GLP-1</span>
-                        <h2>Tratamento medico personalizado para perda de peso</h2>
-                        <p>Programa completo com acompanhamento do inicio ao fim. Nosso medico avalia se o tratamento com GLP-1 e indicado para voce e cria um plano personalizado.</p>
-                        <ul class="check-list">
-                            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Consulta medica online</li>
-                            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Prescricao personalizada (se indicado)</li>
-                            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Acompanhamento nutricional</li>
-                            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Suporte WhatsApp 7 dias por semana</li>
-                            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Entrega discreta em casa</li>
-                            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Retornos e ajustes de dose inclusos</li>
-                        </ul>
-                        <a href="form.html" class="btn-pill btn-pill-lg" style="align-self:flex-start">Comece agora</a>
-                    </div>
-                    <div class="product-img">
-                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&h=700&fit=crop&crop=faces" alt="Medica sorridente com jaleco" loading="lazy">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PARA QUEM -->
-    <section class="section audience" id="para-quem">
-        <div class="container">
-            <div class="reveal">
-                <span class="section-label">Para quem e</span>
-                <h2 class="section-title">Voce se identifica?</h2>
-                <p class="section-sub">Se alguma dessas situacoes parece familiar, podemos ajudar.</p>
-            </div>
-            <div class="audience-grid">
-                <div class="audience-card reveal">
-                    <div class="audience-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-                    </div>
-                    <p>Ja tentei varias dietas e nao consigo manter o peso</p>
-                </div>
-                <div class="audience-card reveal">
-                    <div class="audience-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                    </div>
-                    <p>Tenho sobrepeso e quero um tratamento com acompanhamento medico de verdade</p>
-                </div>
-                <div class="audience-card reveal">
-                    <div class="audience-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    </div>
-                    <p>Nao tenho tempo para consultas presenciais</p>
-                </div>
-                <div class="audience-card reveal">
-                    <div class="audience-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-                    </div>
-                    <p>Quero entender se o tratamento com GLP-1 e indicado para mim</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- INCLUDED -->
-    <div class="section" style="padding-bottom:0">
-        <div class="included reveal">
-            <span class="section-label">Tudo incluso</span>
-            <h2 class="section-title">O que voce recebe no programa</h2>
-            <p class="section-sub">Acompanhamento medico completo do inicio ao fim.</p>
-            <div class="included-grid">
-                <div class="included-item">
-                    <div class="ic"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div>
-                    <div><h4>Consulta medica online</h4><p>Atendimento por videochamada, no horario que funcionar para voce.</p></div>
-                </div>
-                <div class="included-item">
-                    <div class="ic"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div>
-                    <div><h4>Prescricao personalizada</h4><p>Individualizada se o tratamento for indicado pelo medico.</p></div>
-                </div>
-                <div class="included-item">
-                    <div class="ic"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div>
-                    <div><h4>Acompanhamento nutricional</h4><p>Orientacoes para potencializar seus resultados.</p></div>
-                </div>
-                <div class="included-item">
-                    <div class="ic"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div>
-                    <div><h4>Suporte WhatsApp 7 dias</h4><p>Tire duvidas a qualquer momento, sem esperar pela proxima consulta.</p></div>
-                </div>
-                <div class="included-item">
-                    <div class="ic"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div>
-                    <div><h4>Entrega discreta em casa</h4><p>Embalagem discreta, em todo o Nordeste.</p></div>
-                </div>
-                <div class="included-item">
-                    <div class="ic"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div>
-                    <div><h4>Retornos e ajustes inclusos</h4><p>Consultas de retorno sem custo adicional.</p></div>
+                <div class="prod-img">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&h=700&fit=crop&crop=faces" alt="Medica sorridente" loading="lazy">
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- TESTIMONIALS -->
-    <section class="section testimonials" id="depoimentos">
-        <div class="container">
-            <div style="text-align:center" class="reveal">
-                <span class="section-label">Depoimentos</span>
-                <h2 class="section-title">Quem ja fez, recomenda</h2>
-                <p class="section-sub" style="margin:0 auto">Resultados reais de pacientes acompanhados pelo nosso time medico.</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card reveal">
-                    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <p class="testimonial-text">"Eu ja tinha tentado de tudo — nutricionista, academia, dieta restritiva. Com o acompanhamento da Meden, perdi 14kg em 5 meses e pela primeira vez sinto que estou no controle. O medico me explicou tudo com calma, sem pressao nenhuma."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar" style="background:#2e936f">RC</div>
-                        <div>
-                            <div class="testimonial-name">Renata Cavalcanti</div>
-                            <div class="testimonial-meta">Recife, PE · -14kg em 5 meses</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card reveal">
-                    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <p class="testimonial-text">"Moro em Natal e trabalho o dia inteiro. Nao tinha como ir em consultorio. Fiz tudo online, recebi em casa, e ja perdi 9kg em 3 meses. O suporte no WhatsApp e otimo — respondem rapido e sempre com atencao."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar" style="background:#5a4a8a">MS</div>
-                        <div>
-                            <div class="testimonial-name">Marcos Silveira</div>
-                            <div class="testimonial-meta">Natal, RN · -9kg em 3 meses</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card reveal">
-                    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <p class="testimonial-text">"Tinha receio de fazer tratamento online, mas a consulta foi muito profissional. O medico pediu meus exames, analisou tudo e explicou o que era melhor pra mim. Ja perdi 11kg em 4 meses e me sinto muito melhor."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar" style="background:#8a5a3a">AL</div>
-                        <div>
-                            <div class="testimonial-name">Ana Luiza Ferreira</div>
-                            <div class="testimonial-meta">Fortaleza, CE · -11kg em 4 meses</div>
-                        </div>
-                    </div>
-                </div>
+<!-- AUDIENCE -->
+<section class="sec audience">
+    <div class="ctn">
+        <div class="sec-center rv">
+            <span class="pill">Para quem e</span>
+            <h2 class="sec-title">Voce se identifica?</h2>
+            <p class="sec-sub">Se alguma dessas situacoes parece familiar, podemos ajudar.</p>
+        </div>
+        <div class="aud-grid">
+            <div class="aud rv"><div class="aud-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><p>Ja tentei varias dietas e nao consigo manter o peso</p></div>
+            <div class="aud rv"><div class="aud-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><p>Tenho sobrepeso e quero acompanhamento medico de verdade</p></div>
+            <div class="aud rv"><div class="aud-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><p>Nao tenho tempo para consultas presenciais</p></div>
+            <div class="aud rv"><div class="aud-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><p>Quero entender se o GLP-1 e indicado para mim</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- INCLUDED -->
+<section class="sec">
+    <div class="ctn">
+        <div class="incl rv">
+            <span class="pill">Tudo incluso</span>
+            <h2 class="sec-title">O que voce recebe no programa</h2>
+            <p class="sec-sub">Acompanhamento medico completo do inicio ao fim.</p>
+            <div class="incl-grid">
+                <div class="incl-item"><div class="incl-ck"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><div><h4>Consulta medica online</h4><p>Atendimento por videochamada, no horario que funcionar para voce.</p></div></div>
+                <div class="incl-item"><div class="incl-ck"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><div><h4>Prescricao personalizada</h4><p>Individualizada se o tratamento for indicado pelo medico.</p></div></div>
+                <div class="incl-item"><div class="incl-ck"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><div><h4>Acompanhamento nutricional</h4><p>Orientacoes para potencializar seus resultados.</p></div></div>
+                <div class="incl-item"><div class="incl-ck"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><div><h4>Suporte WhatsApp 7 dias</h4><p>Tire duvidas a qualquer momento.</p></div></div>
+                <div class="incl-item"><div class="incl-ck"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><div><h4>Entrega discreta em casa</h4><p>Embalagem discreta, em todo o Nordeste.</p></div></div>
+                <div class="incl-item"><div class="incl-ck"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><div><h4>Retornos e ajustes inclusos</h4><p>Consultas de retorno sem custo adicional.</p></div></div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- CTA BANNER -->
-    <section class="section" style="padding-bottom:120px">
-        <div class="container" style="text-align:center">
-            <div class="reveal">
-                <h2 class="section-title" style="max-width:600px; margin:0 auto 16px;">Pronto para comecar sua transformacao?</h2>
-                <p class="section-sub" style="margin:0 auto 32px;">Avaliacao gratuita, sem compromisso, com medico de verdade.</p>
-                <a href="form.html" class="btn-pill btn-pill-lg">Quero minha avaliacao gratuita</a>
-            </div>
+<!-- TESTIMONIALS -->
+<section class="sec" id="depoimentos">
+    <div class="ctn">
+        <div class="sec-center rv">
+            <span class="pill">Depoimentos</span>
+            <h2 class="sec-title">Quem ja fez, recomenda</h2>
+            <p class="sec-sub">Resultados reais de pacientes acompanhados pelo nosso time.</p>
         </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section faq" id="duvidas">
-        <div class="container">
-            <div style="text-align:center" class="reveal">
-                <span class="section-label">Duvidas frequentes</span>
-                <h2 class="section-title">Perguntas comuns</h2>
-            </div>
-            <div class="faq-list">
-                <div class="faq-item reveal">
-                    <button class="faq-question" aria-expanded="false">
-                        <span>O tratamento com GLP-1 e seguro?</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                    </button>
-                    <div class="faq-answer"><div class="faq-answer-inner">Sim. Os medicamentos a base de GLP-1 sao aprovados pela ANVISA e amplamente utilizados no Brasil e no mundo. Como qualquer tratamento medico, eles possuem indicacoes e contraindicacoes especificas. Por isso, antes de qualquer prescricao, nosso medico realiza uma avaliacao completa do seu historico de saude para garantir que o tratamento seja seguro e adequado para voce.</div></div>
-                </div>
-                <div class="faq-item reveal">
-                    <button class="faq-question" aria-expanded="false">
-                        <span>Preciso ir a uma clinica presencialmente?</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                    </button>
-                    <div class="faq-answer"><div class="faq-answer-inner">Nao. Todo o processo e 100% online — da consulta inicial aos retornos de acompanhamento. A teleconsulta e feita por videochamada, no horario que for mais conveniente para voce. O medico pode solicitar exames laboratoriais que voce pode fazer em qualquer laboratorio da sua cidade.</div></div>
-                </div>
-                <div class="faq-item reveal">
-                    <button class="faq-question" aria-expanded="false">
-                        <span>Como funciona a entrega do medicamento?</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                    </button>
-                    <div class="faq-answer"><div class="faq-answer-inner">Apos a consulta, se o medico indicar o tratamento, a medicacao e enviada diretamente para o endereco que voce informar. A entrega e feita em embalagem discreta, por transportadora com rastreamento, para todas as capitais e principais cidades do Nordeste.</div></div>
-                </div>
-                <div class="faq-item reveal">
-                    <button class="faq-question" aria-expanded="false">
-                        <span>Quanto tempo leva para ver resultados?</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                    </button>
-                    <div class="faq-answer"><div class="faq-answer-inner">Os resultados variam de pessoa para pessoa. Muitos pacientes relatam reducao do apetite ja nas primeiras semanas e perda de peso progressiva ao longo dos meses. O medico acompanha sua evolucao e faz ajustes no tratamento conforme necessario.</div></div>
-                </div>
-                <div class="faq-item reveal">
-                    <button class="faq-question" aria-expanded="false">
-                        <span>E se o medico nao indicar o GLP-1 para mim?</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                    </button>
-                    <div class="faq-answer"><div class="faq-answer-inner">Nosso compromisso e com a sua saude, nao com a venda de medicamentos. Se apos a avaliacao o medico entender que o GLP-1 nao e a melhor opcao para o seu caso, ele vai orientar sobre alternativas mais adequadas. A consulta de avaliacao e gratuita e sem compromisso.</div></div>
-                </div>
-            </div>
+    </div>
+    <div class="ctn">
+        <div class="testi-scroll">
+            <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-txt">"Eu ja tinha tentado de tudo — nutricionista, academia, dieta restritiva. Com a Meden, perdi 14kg em 5 meses e pela primeira vez sinto que estou no controle."</p><div class="testi-who"><div class="testi-av" style="background:#1a7a5a">RC</div><div><div class="testi-name">Renata Cavalcanti</div><div class="testi-meta">Recife, PE · -14kg em 5 meses</div></div></div></div>
+            <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-txt">"Moro em Natal e trabalho o dia inteiro. Fiz tudo online, recebi em casa, e ja perdi 9kg em 3 meses. O suporte no WhatsApp e otimo — respondem rapido."</p><div class="testi-who"><div class="testi-av" style="background:#5a4a8a">MS</div><div><div class="testi-name">Marcos Silveira</div><div class="testi-meta">Natal, RN · -9kg em 3 meses</div></div></div></div>
+            <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-txt">"Tinha receio de tratamento online, mas a consulta foi muito profissional. O medico analisou tudo e explicou o melhor para mim. Ja perdi 11kg em 4 meses."</p><div class="testi-who"><div class="testi-av" style="background:#8a5a3a">AL</div><div><div class="testi-name">Ana Luiza Ferreira</div><div class="testi-meta">Fortaleza, CE · -11kg em 4 meses</div></div></div></div>
+            <div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-txt">"O acompanhamento e incrivel. Nao e so prescrever remedio — eles realmente se importam com a evolucao. Perdi 8kg em 10 semanas."</p><div class="testi-who"><div class="testi-av" style="background:#4a7a8a">DR</div><div><div class="testi-name">Diego Rodrigues</div><div class="testi-meta">Salvador, BA · -8kg em 10 semanas</div></div></div></div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- GUARANTEE -->
-    <section class="guarantee">
-        <div class="container">
-            <div class="guarantee-inner">
-                <div class="guarantee-item reveal">
-                    <div class="guarantee-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-                    </div>
-                    <h4>Entrega rastreavel</h4>
-                    <p>Discreta, em todo o Nordeste</p>
-                </div>
-                <div class="guarantee-item reveal">
-                    <div class="guarantee-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-                    </div>
-                    <h4>Medicos licenciados</h4>
-                    <p>Planos orientados por medicos reais</p>
-                </div>
-                <div class="guarantee-item reveal">
-                    <div class="guarantee-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    </div>
-                    <h4>Sem taxas escondidas</h4>
-                    <p>Transparencia total no programa</p>
-                </div>
-            </div>
+<!-- GUARANTEE -->
+<section class="sec">
+    <div class="ctn">
+        <div class="sec-center rv">
+            <span class="pill">Nossa garantia</span>
+            <h2 class="sec-title">Compromisso Meden</h2>
         </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <div class="footer-logo">meden</div>
-                    <div class="footer-tagline">Emagrecimento medico, do Nordeste para o Nordeste</div>
-                    <div class="footer-contact">
-                        <p>contato@meden.com.br</p>
-                        <p>Atendemos todo o Nordeste</p>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <div class="footer-col-title">Links</div>
-                    <a href="#como-funciona">Como funciona</a>
-                    <a href="#programa">Programa</a>
-                    <a href="#depoimentos">Depoimentos</a>
-                    <a href="#duvidas">Duvidas</a>
-                    <a href="form.html">Avaliacao gratuita</a>
-                </div>
-                <div class="footer-col">
-                    <div class="footer-col-title">Legal</div>
-                    <a href="#">Politica de Privacidade</a>
-                    <a href="#">Termos de Uso</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p class="footer-legal">As consultas sao realizadas por medicos licenciados pelo Conselho Federal de Medicina (CFM). A prescricao de medicamentos esta sujeita a avaliacao medica individual. Este site nao realiza propaganda de medicamentos.</p>
-                <p class="footer-copy">&copy; 2026 Meden. Todos os direitos reservados.</p>
-            </div>
+        <div class="guar-grid">
+            <div class="guar rv"><div class="guar-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><h4>Entrega rastreavel</h4><p>Discreta, em todo o Nordeste</p></div>
+            <div class="guar rv"><div class="guar-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div><h4>Medicos reais</h4><p>Licenciados pelo CFM</p></div>
+            <div class="guar rv"><div class="guar-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h4>Sem taxas escondidas</h4><p>Transparencia total</p></div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script>
-        // Nav scroll
-        (function() {
-            var nav = document.getElementById('nav');
-            window.addEventListener('scroll', function() {
-                nav.classList.toggle('scrolled', window.scrollY > 60);
-            });
-        })();
+<!-- FAQ -->
+<section class="sec" id="duvidas">
+    <div class="ctn">
+        <div class="sec-center rv">
+            <span class="pill">Duvidas frequentes</span>
+            <h2 class="sec-title">Perguntas comuns</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item rv"><button class="faq-q"><span>O tratamento com GLP-1 e seguro?</span><svg class="faq-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a"><div class="faq-a-in">Sim. Os medicamentos a base de GLP-1 sao aprovados pela ANVISA e amplamente utilizados no Brasil e no mundo. Antes de qualquer prescricao, nosso medico realiza uma avaliacao completa do seu historico de saude.</div></div></div>
+            <div class="faq-item rv"><button class="faq-q"><span>Preciso ir a uma clinica presencialmente?</span><svg class="faq-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a"><div class="faq-a-in">Nao. Todo o processo e 100% online — da consulta inicial aos retornos. A teleconsulta e por videochamada, no horario mais conveniente para voce.</div></div></div>
+            <div class="faq-item rv"><button class="faq-q"><span>Como funciona a entrega do medicamento?</span><svg class="faq-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a"><div class="faq-a-in">A medicacao e enviada em embalagem discreta, por transportadora com rastreamento, para todas as capitais e principais cidades do Nordeste.</div></div></div>
+            <div class="faq-item rv"><button class="faq-q"><span>Quanto tempo leva para ver resultados?</span><svg class="faq-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a"><div class="faq-a-in">Os resultados variam. Muitos pacientes relatam reducao do apetite nas primeiras semanas e perda de peso progressiva ao longo dos meses.</div></div></div>
+            <div class="faq-item rv"><button class="faq-q"><span>E se o medico nao indicar o GLP-1 para mim?</span><svg class="faq-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a"><div class="faq-a-in">Nosso compromisso e com sua saude. Se o GLP-1 nao for indicado, o medico orientara alternativas. A avaliacao e gratuita e sem compromisso.</div></div></div>
+        </div>
+    </div>
+</section>
 
-        // Scroll reveal (IntersectionObserver)
-        (function() {
-            var els = document.querySelectorAll('.reveal');
-            if (!('IntersectionObserver' in window)) {
-                els.forEach(function(el) { el.classList.add('visible'); });
-                return;
-            }
-            var obs = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        obs.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-            els.forEach(function(el) { obs.observe(el); });
-        })();
+<!-- CTA BANNER -->
+<div class="ctn">
+    <div class="cta-banner rv">
+        <span class="pill">Avaliacao gratuita</span>
+        <h2 class="sec-title">Pronto para comecar?</h2>
+        <p class="sec-sub">Sem compromisso. Sem julgamento. Com medico de verdade.</p>
+        <a href="form.html" class="btn btn-g btn-lg">Quero minha avaliacao gratuita</a>
+    </div>
+</div>
 
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="ctn">
+        <div class="ft-grid">
+            <div>
+                <div class="ft-logo">meden</div>
+                <div class="ft-tag">Emagrecimento medico, do Nordeste para o Nordeste</div>
+                <div class="ft-contact"><p>contato@meden.com.br</p><p>Atendemos todo o Nordeste</p></div>
+            </div>
+            <div class="ft-col"><div class="ft-col-t">Links</div><a href="#como-funciona">Como funciona</a><a href="#programa">Programa</a><a href="#depoimentos">Depoimentos</a><a href="#duvidas">Duvidas</a><a href="form.html">Avaliacao gratuita</a></div>
+            <div class="ft-col"><div class="ft-col-t">Legal</div><a href="#">Politica de Privacidade</a><a href="#">Termos de Uso</a></div>
+        </div>
+        <div class="ft-btm">
+            <p class="ft-legal">As consultas sao realizadas por medicos licenciados pelo CFM. A prescricao de medicamentos esta sujeita a avaliacao medica individual. Este site nao realiza propaganda de medicamentos.</p>
+            <p class="ft-copy">&copy; 2026 Meden. Todos os direitos reservados.</p>
+        </div>
+    </div>
+</footer>
 
-        // FAQ
-        (function() {
-            document.querySelectorAll('.faq-question').forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    var item = btn.parentElement;
-                    var answer = item.querySelector('.faq-answer');
-                    var isOpen = item.classList.contains('open');
-                    document.querySelectorAll('.faq-item').forEach(function(i) {
-                        i.classList.remove('open');
-                        i.querySelector('.faq-question').setAttribute('aria-expanded','false');
-                        i.querySelector('.faq-answer').style.maxHeight = null;
-                    });
-                    if (!isOpen) {
-                        item.classList.add('open');
-                        btn.setAttribute('aria-expanded','true');
-                        answer.style.maxHeight = answer.scrollHeight + 'px';
-                    }
-                });
-            });
-        })();
+<!-- FLOATING CTA (mobile) -->
+<div class="float-cta" id="floatCta">
+    <a href="form.html" class="btn btn-g">Avaliacao gratuita — Leva 2 min</a>
+</div>
 
-        // Smooth scroll
-        (function() {
-            document.querySelectorAll('a[href^="#"]').forEach(function(link) {
-                link.addEventListener('click', function(e) {
-                    var t = document.querySelector(this.getAttribute('href'));
-                    if (t) { e.preventDefault(); window.scrollTo({ top: t.offsetTop - 72, behavior: 'smooth' }); }
-                });
-            });
-        })();
+<script>
+// Nav scroll
+var nav=document.getElementById('nav');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>60)});
 
-        // Mobile menu (simple toggle)
-        (function() {
-            var btn = document.getElementById('mobileMenuBtn');
-            var links = document.querySelector('.nav-links');
-            if (!btn || !links) return;
-            btn.addEventListener('click', function() {
-                var open = links.style.display === 'flex';
-                links.style.display = open ? 'none' : 'flex';
-                links.style.flexDirection = 'column';
-                links.style.position = 'absolute';
-                links.style.top = '56px';
-                links.style.left = '0';
-                links.style.right = '0';
-                links.style.background = 'rgba(250,249,247,0.98)';
-                links.style.padding = open ? '0' : '16px 24px 24px';
-                links.style.borderRadius = '0 0 16px 16px';
-                links.style.boxShadow = open ? 'none' : '0 8px 24px rgba(0,0,0,0.1)';
-                links.querySelectorAll('a:not(.btn-pill)').forEach(function(a) { a.style.color = '#242220'; a.style.padding = '10px 0'; });
-            });
-            links.querySelectorAll('a').forEach(function(a) {
-                a.addEventListener('click', function() {
-                    if (window.innerWidth <= 900) { links.style.display = 'none'; }
-                });
-            });
-        })();
-    </script>
+// Mobile menu
+var burger=document.getElementById('burger'),mob=document.getElementById('mobMenu');
+burger.addEventListener('click',function(){burger.classList.toggle('open');mob.classList.toggle('open');document.body.style.overflow=mob.classList.contains('open')?'hidden':''});
+mob.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){burger.classList.remove('open');mob.classList.remove('open');document.body.style.overflow=''})});
 
+// Ticker duplicate for seamless loop
+var tk=document.getElementById('ticker');tk.innerHTML+=tk.innerHTML;
+
+// Scroll reveal
+var rvs=document.querySelectorAll('.rv');
+if('IntersectionObserver' in window){
+    var obs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('vis');obs.unobserve(en.target)}})},{threshold:.12,rootMargin:'0px 0px -30px 0px'});
+    rvs.forEach(function(el){obs.observe(el)});
+}else{rvs.forEach(function(el){el.classList.add('vis')})}
+
+// FAQ
+document.querySelectorAll('.faq-q').forEach(function(b){b.addEventListener('click',function(){var it=b.parentElement,a=it.querySelector('.faq-a'),op=it.classList.contains('open');document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight=null});if(!op){it.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}})});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(function(l){l.addEventListener('click',function(e){var t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();window.scrollTo({top:t.offsetTop-64,behavior:'smooth'})}})});
+
+// Floating CTA
+var fc=document.getElementById('floatCta'),lastY=0;
+window.addEventListener('scroll',function(){var y=scrollY;if(y>600){fc.classList.add('show')}else{fc.classList.remove('show')}lastY=y});
+
+// Testimonials drag scroll
+var ts=document.querySelector('.testi-scroll');if(ts){var isDown=false,startX,scrollL;
+ts.addEventListener('mousedown',function(e){isDown=true;startX=e.pageX-ts.offsetLeft;scrollL=ts.scrollLeft});
+ts.addEventListener('mouseleave',function(){isDown=false});
+ts.addEventListener('mouseup',function(){isDown=false});
+ts.addEventListener('mousemove',function(e){if(!isDown)return;e.preventDefault();var x=e.pageX-ts.offsetLeft;ts.scrollLeft=scrollL-(x-startX)*1.5})}
+</script>
 </body>
 </html>
