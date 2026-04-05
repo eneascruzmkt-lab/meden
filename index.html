@@ -220,8 +220,67 @@
             background: linear-gradient(170deg, var(--white) 0%, var(--green-light) 100%);
         }
 
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
         .hero-content {
             max-width: 680px;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .hero-image-badge {
+            position: absolute;
+            bottom: -16px;
+            left: -16px;
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hero-image-badge-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--green-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-image-badge-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--green-dark);
+        }
+
+        .hero-image-badge-text {
+            font-size: 0.8rem;
+            color: var(--gray-600);
+        }
+
+        .hero-image-badge-text strong {
+            display: block;
+            font-size: 1.1rem;
+            color: var(--gray-900);
         }
 
         .hero h1 {
@@ -284,6 +343,14 @@
             padding: 32px 24px;
         }
 
+        .step-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+        }
+
         .step-number {
             display: inline-flex;
             align-items: center;
@@ -313,6 +380,70 @@
 
         .steps-connector {
             display: none;
+        }
+
+        /* ===== TRUST BANNER ===== */
+        .trust-banner {
+            position: relative;
+            overflow: hidden;
+            background: var(--gray-900);
+        }
+
+        .trust-banner-img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+
+        .trust-banner-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .trust-banner-content {
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .trust-banner-content h2 {
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .trust-banner-content p {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.7);
+            max-width: 520px;
+            margin: 0 auto 24px;
+        }
+
+        .trust-stats {
+            display: flex;
+            gap: 48px;
+            justify-content: center;
+            margin-top: 28px;
+        }
+
+        .trust-stat {
+            text-align: center;
+        }
+
+        .trust-stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--green-lighter);
+        }
+
+        .trust-stat-label {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            margin-top: 4px;
         }
 
         /* ===== PARA QUEM É ===== */
@@ -498,9 +629,55 @@
             background: var(--green-light);
         }
 
+        .form-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .form-side {
+            position: sticky;
+            top: 100px;
+        }
+
+        .form-side-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: var(--radius);
+            margin-bottom: 24px;
+        }
+
+        .form-side h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 12px;
+        }
+
+        .form-side-list {
+            list-style: none;
+        }
+
+        .form-side-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            padding: 8px 0;
+        }
+
+        .form-side-list li svg {
+            flex-shrink: 0;
+            width: 18px;
+            height: 18px;
+            color: var(--green-dark);
+        }
+
         .form-wrapper {
             max-width: 560px;
-            margin: 0 auto;
         }
 
         .form-card {
@@ -746,6 +923,15 @@
 
         /* ===== RESPONSIVO ===== */
         @media (max-width: 900px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .hero-image img {
+                height: 320px;
+            }
+
             .steps-grid {
                 grid-template-columns: 1fr;
                 gap: 24px;
@@ -762,6 +948,18 @@
             .testimonials-grid {
                 grid-template-columns: 1fr;
             }
+
+            .form-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .form-side {
+                position: static;
+            }
+
+            .trust-stats {
+                gap: 24px;
+            }
         }
 
         @media (max-width: 600px) {
@@ -773,8 +971,27 @@
                 padding: 100px 0 56px;
             }
 
+            .hero-image img {
+                height: 240px;
+            }
+
+            .hero-image-badge {
+                bottom: -12px;
+                left: -8px;
+                padding: 12px 14px;
+            }
+
+            .trust-stats {
+                flex-direction: column;
+                gap: 16px;
+            }
+
             .form-card {
                 padding: 24px;
+            }
+
+            .form-side-img {
+                height: 200px;
             }
 
             .footer-top {
@@ -807,26 +1024,40 @@
     <!-- ===== HERO ===== -->
     <section class="hero" id="inicio">
         <div class="container">
-            <div class="hero-content">
-                <h1>Emagreça com <span>acompanhamento médico real</span>, 100% online</h1>
-                <p class="hero-sub">Consulta gratuita com médico especialista. Tratamento personalizado. Entrega em casa. Sem sair de Natal.</p>
-                <a href="#avaliacao" class="btn btn-primary">Quero minha avaliação gratuita</a>
-                <div class="trust-badges">
-                    <div class="trust-badge">
-                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                        <span>Médicos licenciados pelo CFM</span>
+            <div class="hero-inner">
+                <div class="hero-content">
+                    <h1>Emagreça com <span>acompanhamento médico real</span>, 100% online</h1>
+                    <p class="hero-sub">Consulta gratuita com médico especialista. Tratamento personalizado. Entrega em casa. Sem sair de Natal.</p>
+                    <a href="#avaliacao" class="btn btn-primary">Quero minha avaliação gratuita</a>
+                    <div class="trust-badges">
+                        <div class="trust-badge">
+                            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span>Médicos licenciados pelo CFM</span>
+                        </div>
+                        <div class="trust-badge">
+                            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span>100% online</span>
+                        </div>
+                        <div class="trust-badge">
+                            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span>Entrega discreta em casa</span>
+                        </div>
+                        <div class="trust-badge">
+                            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span>Sem compromisso</span>
+                        </div>
                     </div>
-                    <div class="trust-badge">
-                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                        <span>100% online</span>
-                    </div>
-                    <div class="trust-badge">
-                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                        <span>Entrega discreta em casa</span>
-                    </div>
-                    <div class="trust-badge">
-                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                        <span>Sem compromisso</span>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=600&h=480&fit=crop&crop=faces" alt="Médica sorridente em consulta online" loading="eager">
+                    <div class="hero-image-badge">
+                        <div class="hero-image-badge-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        </div>
+                        <div class="hero-image-badge-text">
+                            <strong>+2.000 pacientes</strong>
+                            atendidos no Nordeste
+                        </div>
                     </div>
                 </div>
             </div>
@@ -843,19 +1074,47 @@
             </div>
             <div class="steps-grid">
                 <div class="step-card">
+                    <img class="step-img" src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=240&fit=crop" alt="Pessoa preenchendo formulário no celular" loading="lazy">
                     <div class="step-number">1</div>
                     <h3>Preencha o formulário</h3>
                     <p>Avaliação gratuita em 2 minutos. Conte um pouco sobre você e seus objetivos.</p>
                 </div>
                 <div class="step-card">
+                    <img class="step-img" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&h=240&fit=crop" alt="Teleconsulta médica online" loading="lazy">
                     <div class="step-number">2</div>
                     <h3>Fale com nosso médico</h3>
                     <p>Teleconsulta online no horário que preferir. Tudo pelo celular, com total privacidade.</p>
                 </div>
                 <div class="step-card">
+                    <img class="step-img" src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&h=240&fit=crop" alt="Entrega discreta em casa" loading="lazy">
                     <div class="step-number">3</div>
                     <h3>Receba em casa</h3>
                     <p>Tratamento personalizado entregue discretamente na sua porta, onde quer que esteja no Nordeste.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TRUST BANNER ===== -->
+    <section class="trust-banner">
+        <img class="trust-banner-img" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1400&h=400&fit=crop&crop=center" alt="Estilo de vida saudável" loading="lazy">
+        <div class="trust-banner-overlay">
+            <div class="trust-banner-content">
+                <h2>Seu emagrecimento com respaldo médico</h2>
+                <p>Tratamento sério, com profissionais de verdade, pensado para a realidade do Nordeste.</p>
+                <div class="trust-stats">
+                    <div class="trust-stat">
+                        <div class="trust-stat-number">100%</div>
+                        <div class="trust-stat-label">Online e seguro</div>
+                    </div>
+                    <div class="trust-stat">
+                        <div class="trust-stat-number">9</div>
+                        <div class="trust-stat-label">Capitais atendidas</div>
+                    </div>
+                    <div class="trust-stat">
+                        <div class="trust-stat-number">7 dias</div>
+                        <div class="trust-stat-label">Suporte por semana</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1009,12 +1268,35 @@
     <!-- ===== FORMULÁRIO ===== -->
     <section class="section form-section" id="avaliacao">
         <div class="container">
-            <div class="form-wrapper">
-                <div style="text-align:center">
-                    <span class="section-label">Avaliação gratuita</span>
-                    <h2 class="section-title">Comece agora sua jornada</h2>
-                    <p class="section-subtitle" style="margin:0 auto">Preencha abaixo e nossa equipe entra em contato pelo WhatsApp em até 24 horas.</p>
+            <div class="form-layout">
+                <div class="form-side">
+                    <img class="form-side-img" src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&h=350&fit=crop&crop=faces" alt="Médico atencioso em consulta" loading="lazy">
+                    <h3>Por que fazer a avaliação?</h3>
+                    <ul class="form-side-list">
+                        <li>
+                            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Consulta 100% gratuita e sem compromisso
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Médico avalia se o GLP-1 é indicado para você
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Resposta em até 24 horas pelo WhatsApp
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Suas informações são sigilosas e protegidas
+                        </li>
+                    </ul>
                 </div>
+                <div class="form-wrapper">
+                    <div style="text-align:center">
+                        <span class="section-label">Avaliação gratuita</span>
+                        <h2 class="section-title">Comece agora sua jornada</h2>
+                        <p class="section-subtitle" style="margin:0 auto">Preencha abaixo e nossa equipe entra em contato pelo WhatsApp em até 24 horas.</p>
+                    </div>
 
                 <div class="form-card" id="formCard">
                     <form id="leadForm" novalidate>
@@ -1083,6 +1365,7 @@
                     <a href="#" id="whatsappLink" class="btn btn-primary" target="_blank" rel="noopener">
                         Falar no WhatsApp agora
                     </a>
+                </div>
                 </div>
             </div>
         </div>
