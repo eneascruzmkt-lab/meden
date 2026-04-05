@@ -82,6 +82,7 @@
         html {
             scroll-behavior: smooth;
             -webkit-text-size-adjust: 100%;
+            overflow-x: hidden;
         }
 
         body {
@@ -90,6 +91,7 @@
             background: var(--white);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
         img { max-width: 100%; display: block; }
@@ -703,15 +705,18 @@
         .form-group input,
         .form-group select {
             width: 100%;
+            max-width: 100%;
             padding: 12px 14px;
             font-family: inherit;
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--gray-800);
             background: var(--off-white);
             border: 2px solid transparent;
             border-radius: var(--radius-sm);
             outline: none;
             transition: border-color 0.2s, background 0.2s;
+            -webkit-appearance: none;
+            appearance: none;
         }
 
         .form-group input:focus,
@@ -921,7 +926,7 @@
             margin-top: 16px;
         }
 
-        /* ===== RESPONSIVO ===== */
+        /* ===== RESPONSIVO — TABLET ===== */
         @media (max-width: 900px) {
             .hero-inner {
                 grid-template-columns: 1fr;
@@ -934,7 +939,7 @@
 
             .steps-grid {
                 grid-template-columns: 1fr;
-                gap: 24px;
+                gap: 16px;
             }
 
             .audience-grid {
@@ -947,10 +952,12 @@
 
             .testimonials-grid {
                 grid-template-columns: 1fr;
+                gap: 16px;
             }
 
             .form-layout {
                 grid-template-columns: 1fr;
+                gap: 32px;
             }
 
             .form-side {
@@ -962,51 +969,268 @@
             }
         }
 
+        /* ===== RESPONSIVO — MOBILE ===== */
         @media (max-width: 600px) {
-            .section {
-                padding: 56px 0;
+            .container {
+                padding: 0 16px;
             }
 
+            .section {
+                padding: 48px 0;
+            }
+
+            /* Header */
+            .header-inner {
+                height: 56px;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .header .btn {
+                padding: 8px 14px;
+                font-size: 0.8rem;
+            }
+
+            /* Hero */
             .hero {
-                padding: 100px 0 56px;
+                padding: 80px 0 48px;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+                margin-bottom: 14px;
+            }
+
+            .hero-sub {
+                font-size: 0.95rem;
+                margin-bottom: 24px;
+            }
+
+            .hero .btn-primary {
+                width: 100%;
+                text-align: center;
             }
 
             .hero-image img {
-                height: 240px;
+                height: 220px;
+                border-radius: 14px;
             }
 
             .hero-image-badge {
                 bottom: -12px;
-                left: -8px;
-                padding: 12px 14px;
+                left: 8px;
+                padding: 10px 14px;
+                border-radius: 10px;
+            }
+
+            .hero-image-badge-icon {
+                width: 34px;
+                height: 34px;
+            }
+
+            .hero-image-badge-text {
+                font-size: 0.75rem;
+            }
+
+            .hero-image-badge-text strong {
+                font-size: 0.95rem;
+            }
+
+            .trust-badges {
+                gap: 10px 16px;
+                margin-top: 20px;
+            }
+
+            .trust-badge {
+                font-size: 0.8rem;
+            }
+
+            /* Steps */
+            .step-img {
+                height: 160px;
+            }
+
+            .step-card {
+                padding: 20px 16px;
+            }
+
+            .step-number {
+                width: 44px;
+                height: 44px;
+                font-size: 1.1rem;
+            }
+
+            /* Trust banner */
+            .trust-banner-img {
+                height: 240px;
+            }
+
+            .trust-banner-content h2 {
+                font-size: 1.3rem;
+            }
+
+            .trust-banner-content p {
+                font-size: 0.9rem;
             }
 
             .trust-stats {
-                flex-direction: column;
+                flex-direction: row;
+                flex-wrap: wrap;
                 gap: 16px;
+                justify-content: center;
+            }
+
+            .trust-stat-number {
+                font-size: 1.5rem;
+            }
+
+            .trust-stat-label {
+                font-size: 0.75rem;
+            }
+
+            /* Audience */
+            .audience-card {
+                padding: 20px;
+            }
+
+            .audience-icon {
+                width: 38px;
+                height: 38px;
+            }
+
+            .audience-icon svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .audience-card p {
+                font-size: 0.9rem;
+            }
+
+            /* Included */
+            .included-item {
+                padding: 16px;
+            }
+
+            .included-item h4 {
+                font-size: 0.95rem;
+            }
+
+            .included-item p {
+                font-size: 0.8rem;
+            }
+
+            /* Testimonials */
+            .testimonial-card {
+                padding: 22px;
+            }
+
+            .testimonial-text {
+                font-size: 0.9rem;
+            }
+
+            /* Form */
+            .form-side-img {
+                height: 180px;
+            }
+
+            .form-side h3 {
+                font-size: 1.05rem;
+            }
+
+            .form-side-list li {
+                font-size: 0.85rem;
             }
 
             .form-card {
-                padding: 24px;
+                padding: 20px;
+                margin-top: 24px;
             }
 
-            .form-side-img {
-                height: 200px;
+            .form-group input,
+            .form-group select {
+                padding: 11px 12px;
+                font-size: 0.9rem;
+            }
+
+            .form-submit {
+                padding: 14px;
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.95rem;
+            }
+
+            /* FAQ */
+            .faq-question {
+                font-size: 0.9rem;
+                padding: 16px 0;
+            }
+
+            .faq-answer-inner {
+                font-size: 0.875rem;
+            }
+
+            /* Footer */
+            .footer {
+                padding: 36px 0 24px;
             }
 
             .footer-top {
                 flex-direction: column;
                 align-items: flex-start;
+                gap: 16px;
+                margin-bottom: 24px;
+                padding-bottom: 24px;
             }
 
+            .footer-legal {
+                font-size: 0.7rem;
+            }
+
+            /* Global buttons on mobile */
             .btn {
                 padding: 14px 24px;
                 font-size: 0.95rem;
             }
+        }
 
-            .header .btn {
-                padding: 8px 16px;
-                font-size: 0.8rem;
+        /* ===== RESPONSIVO — MOBILE PEQUENO (320px) ===== */
+        @media (max-width: 380px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-image img {
+                height: 180px;
+            }
+
+            .trust-badges {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .trust-stats {
+                gap: 12px;
+            }
+
+            .trust-stat-number {
+                font-size: 1.3rem;
+            }
+
+            .form-card {
+                padding: 16px;
+            }
+
+            .section-title {
+                font-size: 1.25rem;
             }
         }
     </style>
@@ -1027,7 +1251,7 @@
             <div class="hero-inner">
                 <div class="hero-content">
                     <h1>Emagreça com <span>acompanhamento médico real</span>, 100% online</h1>
-                    <p class="hero-sub">Consulta gratuita com médico especialista. Tratamento personalizado. Entrega em casa. Sem sair de Natal.</p>
+                    <p class="hero-sub">Consulta gratuita com médico especialista. Tratamento personalizado. Entrega em casa, em todo o Nordeste.</p>
                     <a href="#avaliacao" class="btn btn-primary">Quero minha avaliação gratuita</a>
                     <div class="trust-badges">
                         <div class="trust-badge">
