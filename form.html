@@ -57,10 +57,10 @@
             display: flex; align-items: center; justify-content: space-between;
         }
         .nav-logo {
-            display: flex; align-items: center; gap: 4px; height: 32px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem; font-weight: 800;
+            color: var(--text); letter-spacing: -0.03em;
         }
-        .nav-logo img { height: 24px; width: 24px; object-fit: contain; }
-        .nav-logo span { font-family: 'Montserrat', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--green); letter-spacing: -0.03em; }
         .nav-logo em { font-style: normal; color: var(--green); }
         .nav-back {
             font-size: 0.85rem; font-weight: 500;
@@ -319,7 +319,7 @@
 
     <nav class="nav">
         <div class="nav-inner">
-            <a href="/" class="nav-logo"><img src="logonova.png" alt="Meden"><span>me<em>d</em>en</span></a>
+            <a href="/" class="nav-logo">me<em>d</em>en</a>
             <a href="/" class="nav-back">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
                 Voltar ao site
