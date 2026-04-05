@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meden — Emagrecimento médico online com GLP-1 | Nordeste</title>
+    <meta name="description" content="Emagreça com acompanhamento médico real, 100% online. Consulta gratuita com médico especialista, tratamento personalizado com GLP-1 e entrega em casa. Atendemos todo o Nordeste.">
+    <meta property="og:title" content="Meden — Emagrecimento médico online com GLP-1">
+    <meta property="og:description" content="Consulta gratuita com médico especialista. Tratamento personalizado. Entrega em casa. Sem sair da sua cidade.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://meden.com.br">
+    <meta property="og:locale" content="pt_BR">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://meden.com.br">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Google Analytics GA4 (ativar depois com ID real) -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    -->
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MedicalClinic",
+        "name": "Meden",
+        "description": "Clínica de saúde digital focada em emagrecimento com acompanhamento médico online. Atendimento para todo o Nordeste do Brasil.",
+        "url": "https://meden.com.br",
+        "telephone": "+5584999999999",
+        "areaServed": {
+            "@type": "Place",
+            "name": "Nordeste do Brasil"
+        },
+        "medicalSpecialty": "Endocrinology",
+        "availableService": {
+            "@type": "MedicalProcedure",
+            "name": "Consulta médica online para emagrecimento",
+            "procedureType": "http://schema.org/NoninvasiveProcedure"
+        }
+    }
+    </script>
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --green-dark: #1a5c3a;
+            --green-medium: #237a4d;
+            --green-light: #e8f5ee;
+            --green-lighter: #d0ebda;
+            --white: #ffffff;
+            --off-white: #f5f5f0;
+            --gray-100: #f0f0eb;
+            --gray-200: #e0e0db;
+            --gray-400: #999990;
+            --gray-600: #666660;
+            --gray-800: #333330;
+            --gray-900: #1a1a18;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+            --radius: 12px;
+            --radius-sm: 8px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-800);
+            background: var(--white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* ===== UTILITIES ===== */
+        .container {
+            width: 100%;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--green-dark);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            font-weight: 800;
+            color: var(--gray-900);
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 32px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary {
+            background: var(--green-dark);
+            color: var(--white);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            background: var(--green-medium);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--green-dark);
+            border: 2px solid var(--green-dark);
+        }
+
+        .btn-outline:hover {
+            background: var(--green-light);
+        }
+
+        /* ===== HEADER (Sticky) ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            transition: box-shadow 0.3s;
+        }
+
+        .header.scrolled {
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--green-dark);
+            letter-spacing: -0.02em;
+        }
+
+        .header .btn {
+            padding: 10px 20px;
+            font-size: 0.875rem;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 120px 0 80px;
+            background: linear-gradient(170deg, var(--white) 0%, var(--green-light) 100%);
+        }
+
+        .hero-content {
+            max-width: 680px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5.5vw, 3rem);
+            font-weight: 800;
+            color: var(--gray-900);
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            color: var(--green-dark);
+        }
+
+        .hero-sub {
+            font-size: clamp(1rem, 2.5vw, 1.15rem);
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 32px;
+            max-width: 540px;
+        }
+
+        .trust-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 24px;
+            margin-top: 28px;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        .trust-badge svg {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            color: var(--green-dark);
+        }
+
+        /* ===== COMO FUNCIONA ===== */
+        .steps-section {
+            background: var(--white);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 32px 24px;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            background: var(--green-light);
+            color: var(--green-dark);
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        .step-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+        }
+
+        .step-card p {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        .steps-connector {
+            display: none;
+        }
+
+        /* ===== PARA QUEM É ===== */
+        .audience-section {
+            background: var(--off-white);
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 48px;
+        }
+
+        .audience-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 28px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.2s;
+        }
+
+        .audience-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .audience-icon {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            background: var(--green-light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .audience-icon svg {
+            width: 22px;
+            height: 22px;
+            color: var(--green-dark);
+        }
+
+        .audience-card p {
+            font-size: 1rem;
+            color: var(--gray-800);
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        /* ===== O QUE ESTÁ INCLUÍDO ===== */
+        .included-section {
+            background: var(--green-dark);
+            color: var(--white);
+        }
+
+        .included-section .section-label {
+            color: var(--green-lighter);
+        }
+
+        .included-section .section-title {
+            color: var(--white);
+        }
+
+        .included-section .section-subtitle {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .included-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 48px;
+        }
+
+        .included-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 20px;
+            background: rgba(255,255,255,0.08);
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .included-check {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .included-check svg {
+            width: 16px;
+            height: 16px;
+            color: var(--green-lighter);
+        }
+
+        .included-item h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .included-item p {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.5;
+        }
+
+        /* ===== DEPOIMENTOS ===== */
+        .testimonials-section {
+            background: var(--off-white);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .testimonial-stars {
+            color: #f0a500;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-text {
+            font-size: 0.95rem;
+            color: var(--gray-800);
+            line-height: 1.65;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .testimonial-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .testimonial-meta {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+        }
+
+        /* ===== FORMULÁRIO ===== */
+        .form-section {
+            background: var(--green-light);
+        }
+
+        .form-wrapper {
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .form-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+            margin-top: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 14px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--gray-800);
+            background: var(--off-white);
+            border: 2px solid transparent;
+            border-radius: var(--radius-sm);
+            outline: none;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            background: var(--white);
+            border-color: var(--green-dark);
+        }
+
+        .form-group input::placeholder {
+            color: var(--gray-400);
+        }
+
+        .form-group input.error,
+        .form-group select.error {
+            border-color: #d32f2f;
+            background: #fff5f5;
+        }
+
+        .form-error-msg {
+            font-size: 0.8rem;
+            color: #d32f2f;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .form-group input.error + .form-error-msg,
+        .form-group select.error + .form-error-msg {
+            display: block;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 16px;
+            font-size: 1.05rem;
+            margin-top: 8px;
+        }
+
+        .form-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            margin-top: 16px;
+        }
+
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 48px 24px;
+        }
+
+        .form-success.active {
+            display: block;
+        }
+
+        .form-success-icon {
+            width: 72px;
+            height: 72px;
+            background: var(--green-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+
+        .form-success-icon svg {
+            width: 36px;
+            height: 36px;
+            color: var(--green-dark);
+        }
+
+        .form-success h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 12px;
+        }
+
+        .form-success p {
+            font-size: 1rem;
+            color: var(--gray-600);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        /* ===== FAQ ===== */
+        .faq-section {
+            background: var(--white);
+        }
+
+        .faq-list {
+            max-width: 720px;
+            margin: 48px auto 0;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            gap: 16px;
+        }
+
+        .faq-question:hover {
+            color: var(--green-dark);
+        }
+
+        .faq-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            transition: transform 0.25s;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer-inner {
+            padding: 0 0 20px;
+            font-size: 0.95rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        /* ===== RODAPÉ ===== */
+        .footer {
+            background: var(--gray-900);
+            color: rgba(255,255,255,0.6);
+            padding: 48px 0 32px;
+        }
+
+        .footer-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        .footer-tagline {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.4);
+            margin-top: 4px;
+        }
+
+        .footer-region {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-legal {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.35);
+            line-height: 1.7;
+            margin-top: 24px;
+            max-width: 700px;
+        }
+
+        .footer-copy {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+            margin-top: 16px;
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 900px) {
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .audience-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .included-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .section {
+                padding: 56px 0;
+            }
+
+            .hero {
+                padding: 100px 0 56px;
+            }
+
+            .form-card {
+                padding: 24px;
+            }
+
+            .footer-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .btn {
+                padding: 14px 24px;
+                font-size: 0.95rem;
+            }
+
+            .header .btn {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header" id="header">
+        <div class="container header-inner">
+            <a href="#" class="logo">meden</a>
+            <a href="#avaliacao" class="btn btn-primary">Avaliação gratuita</a>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Emagreça com <span>acompanhamento médico real</span>, 100% online</h1>
+                <p class="hero-sub">Consulta gratuita com médico especialista. Tratamento personalizado. Entrega em casa. Sem sair de Natal.</p>
+                <a href="#avaliacao" class="btn btn-primary">Quero minha avaliação gratuita</a>
+                <div class="trust-badges">
+                    <div class="trust-badge">
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        <span>Médicos licenciados pelo CFM</span>
+                    </div>
+                    <div class="trust-badge">
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        <span>100% online</span>
+                    </div>
+                    <div class="trust-badge">
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        <span>Entrega discreta em casa</span>
+                    </div>
+                    <div class="trust-badge">
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        <span>Sem compromisso</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COMO FUNCIONA ===== -->
+    <section class="section steps-section" id="como-funciona">
+        <div class="container">
+            <div style="text-align:center">
+                <span class="section-label">Como funciona</span>
+                <h2 class="section-title">Simples, rápido e sem burocracia</h2>
+                <p class="section-subtitle" style="margin:0 auto">Você começa agora e fala com um médico ainda esta semana.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Preencha o formulário</h3>
+                    <p>Avaliação gratuita em 2 minutos. Conte um pouco sobre você e seus objetivos.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Fale com nosso médico</h3>
+                    <p>Teleconsulta online no horário que preferir. Tudo pelo celular, com total privacidade.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Receba em casa</h3>
+                    <p>Tratamento personalizado entregue discretamente na sua porta, onde quer que esteja no Nordeste.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PARA QUEM É ===== -->
+    <section class="section audience-section" id="para-quem">
+        <div class="container">
+            <span class="section-label">Para quem é</span>
+            <h2 class="section-title">Você se identifica com alguma dessas situações?</h2>
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <div class="audience-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                    </div>
+                    <p>Já tentei várias dietas e não consigo manter o peso</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    </div>
+                    <p>Tenho sobrepeso e quero um tratamento com acompanhamento médico de verdade</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <p>Não tenho tempo para consultas presenciais</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    </div>
+                    <p>Quero entender se o tratamento com GLP-1 é indicado para mim</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== O QUE ESTÁ INCLUÍDO ===== -->
+    <section class="section included-section" id="programa">
+        <div class="container">
+            <span class="section-label">O programa</span>
+            <h2 class="section-title">Tudo o que está incluído</h2>
+            <p class="section-subtitle">Um programa completo de emagrecimento, com acompanhamento médico do início ao fim.</p>
+            <div class="included-grid">
+                <div class="included-item">
+                    <div class="included-check">
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                    </div>
+                    <div>
+                        <h4>Consulta médica online</h4>
+                        <p>Atendimento com médico especialista por videochamada, no horário que funcionar para você.</p>
+                    </div>
+                </div>
+                <div class="included-item">
+                    <div class="included-check">
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                    </div>
+                    <div>
+                        <h4>Avaliação e prescrição personalizada</h4>
+                        <p>Prescrição individualizada se o tratamento for indicado pelo médico para o seu caso.</p>
+                    </div>
+                </div>
+                <div class="included-item">
+                    <div class="included-check">
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                    </div>
+                    <div>
+                        <h4>Acompanhamento nutricional</h4>
+                        <p>Orientações nutricionais para potencializar seus resultados de forma saudável.</p>
+                    </div>
+                </div>
+                <div class="included-item">
+                    <div class="included-check">
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                    </div>
+                    <div>
+                        <h4>Suporte por WhatsApp 7 dias</h4>
+                        <p>Tire dúvidas e receba orientações a qualquer momento, sem esperar pela próxima consulta.</p>
+                    </div>
+                </div>
+                <div class="included-item">
+                    <div class="included-check">
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                    </div>
+                    <div>
+                        <h4>Entrega discreta em casa</h4>
+                        <p>Receba o tratamento na sua porta, em embalagem discreta, em todo o Nordeste.</p>
+                    </div>
+                </div>
+                <div class="included-item">
+                    <div class="included-check">
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                    </div>
+                    <div>
+                        <h4>Retornos e ajustes inclusos</h4>
+                        <p>Consultas de retorno e ajustes de dose fazem parte do programa, sem custo adicional.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DEPOIMENTOS ===== -->
+    <section class="section testimonials-section" id="depoimentos">
+        <div class="container">
+            <div style="text-align:center">
+                <span class="section-label">Depoimentos</span>
+                <h2 class="section-title">Quem já fez, recomenda</h2>
+                <p class="section-subtitle" style="margin:0 auto">Resultados reais de pacientes acompanhados pelo nosso time médico.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="testimonial-text">"Eu já tinha tentado de tudo — nutricionista, academia, dieta restritiva. Com o acompanhamento da Meden, perdi 14kg em 5 meses e pela primeira vez sinto que estou no controle. O médico me explicou tudo com calma, sem pressão nenhuma."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" style="background:#2d7a5a">RC</div>
+                        <div>
+                            <div class="testimonial-name">Renata Cavalcanti</div>
+                            <div class="testimonial-meta">Recife, PE · -14kg em 5 meses</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="testimonial-text">"Moro em Natal e trabalho o dia inteiro. Não tinha como ir em consultório. Fiz tudo online, recebi em casa, e já perdi 9kg em 3 meses. O suporte no WhatsApp é ótimo — respondem rápido e sempre com atenção."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" style="background:#5a4a8a">MS</div>
+                        <div>
+                            <div class="testimonial-name">Marcos Silveira</div>
+                            <div class="testimonial-meta">Natal, RN · -9kg em 3 meses</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="testimonial-text">"Tinha receio de fazer tratamento online, mas a consulta foi muito profissional. O médico pediu meus exames, analisou tudo e explicou o que era melhor pra mim. Já perdi 11kg em 4 meses e me sinto muito melhor."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" style="background:#8a5a3a">AL</div>
+                        <div>
+                            <div class="testimonial-name">Ana Luíza Ferreira</div>
+                            <div class="testimonial-meta">Fortaleza, CE · -11kg em 4 meses</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FORMULÁRIO ===== -->
+    <section class="section form-section" id="avaliacao">
+        <div class="container">
+            <div class="form-wrapper">
+                <div style="text-align:center">
+                    <span class="section-label">Avaliação gratuita</span>
+                    <h2 class="section-title">Comece agora sua jornada</h2>
+                    <p class="section-subtitle" style="margin:0 auto">Preencha abaixo e nossa equipe entra em contato pelo WhatsApp em até 24 horas.</p>
+                </div>
+
+                <div class="form-card" id="formCard">
+                    <form id="leadForm" novalidate>
+                        <div class="form-group">
+                            <label for="nome">Nome completo *</label>
+                            <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required autocomplete="name">
+                            <div class="form-error-msg">Por favor, insira seu nome completo.</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="whatsapp">WhatsApp *</label>
+                            <input type="tel" id="whatsapp" name="whatsapp" placeholder="(84) 99999-9999" required autocomplete="tel">
+                            <div class="form-error-msg">Insira um número de WhatsApp válido.</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cidade">Cidade *</label>
+                            <select id="cidade" name="cidade" required>
+                                <option value="" disabled selected>Selecione sua cidade</option>
+                                <option value="Natal">Natal</option>
+                                <option value="Fortaleza">Fortaleza</option>
+                                <option value="Recife">Recife</option>
+                                <option value="Salvador">Salvador</option>
+                                <option value="João Pessoa">João Pessoa</option>
+                                <option value="Maceió">Maceió</option>
+                                <option value="Teresina">Teresina</option>
+                                <option value="São Luís">São Luís</option>
+                                <option value="Aracaju">Aracaju</option>
+                                <option value="Outra cidade">Outra cidade</option>
+                            </select>
+                            <div class="form-error-msg">Por favor, selecione sua cidade.</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="peso">Peso atual (kg) *</label>
+                            <input type="number" id="peso" name="peso" placeholder="Ex: 85" min="30" max="300" required>
+                            <div class="form-error-msg">Insira seu peso atual em kg.</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dificuldade">Maior dificuldade *</label>
+                            <select id="dificuldade" name="dificuldade" required>
+                                <option value="" disabled selected>Selecione uma opção</option>
+                                <option value="Controlar o apetite">Controlar o apetite</option>
+                                <option value="Manter o peso após dietas">Manter o peso após dietas</option>
+                                <option value="Falta de tempo para acompanhamento">Falta de tempo para acompanhamento</option>
+                                <option value="Não sei por onde começar">Não sei por onde começar</option>
+                            </select>
+                            <div class="form-error-msg">Por favor, selecione sua maior dificuldade.</div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary form-submit">
+                            Quero minha avaliação gratuita &rarr;
+                        </button>
+
+                        <p class="form-note">Seus dados estão seguros e não serão compartilhados.</p>
+                    </form>
+                </div>
+
+                <div class="form-card form-success" id="formSuccess">
+                    <div class="form-success-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <h3>Recebemos sua solicitação!</h3>
+                    <p>Nossa equipe vai entrar em contato pelo WhatsApp em até 24 horas. Fique de olho nas mensagens 😊</p>
+                    <a href="#" id="whatsappLink" class="btn btn-primary" target="_blank" rel="noopener">
+                        Falar no WhatsApp agora
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section faq-section" id="duvidas">
+        <div class="container">
+            <div style="text-align:center">
+                <span class="section-label">Dúvidas frequentes</span>
+                <h2 class="section-title">Perguntas comuns</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>O tratamento com GLP-1 é seguro?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Sim. Os medicamentos à base de GLP-1 são aprovados pela ANVISA e amplamente utilizados no Brasil e no mundo. Como qualquer tratamento médico, eles possuem indicações e contraindicações específicas. Por isso, antes de qualquer prescrição, nosso médico realiza uma avaliação completa do seu histórico de saúde para garantir que o tratamento seja seguro e adequado para você.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Preciso ir a uma clínica presencialmente?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Não. Todo o processo é 100% online — da consulta inicial aos retornos de acompanhamento. A teleconsulta é feita por videochamada, no horário que for mais conveniente para você. O médico pode solicitar exames laboratoriais que você pode fazer em qualquer laboratório da sua cidade.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Como funciona a entrega do medicamento?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Após a consulta, se o médico indicar o tratamento, a medicação é enviada diretamente para o endereço que você informar. A entrega é feita em embalagem discreta, por transportadora com rastreamento, para todas as capitais e principais cidades do Nordeste. Você recebe o código de rastreio e pode acompanhar tudo pelo celular.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Quanto tempo leva para ver resultados?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Os resultados variam de pessoa para pessoa, pois dependem de fatores como metabolismo, alimentação e nível de atividade física. Muitos pacientes relatam redução do apetite já nas primeiras semanas e perda de peso progressiva ao longo dos meses. O médico acompanha sua evolução e faz ajustes no tratamento conforme necessário para otimizar seus resultados de forma saudável.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>E se o médico não indicar o GLP-1 para mim?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Nosso compromisso é com a sua saúde, não com a venda de medicamentos. Se após a avaliação o médico entender que o GLP-1 não é a melhor opção para o seu caso, ele vai orientar sobre alternativas mais adequadas. A consulta de avaliação é gratuita e sem compromisso — você não paga nada por essa orientação inicial.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== RODAPÉ ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-logo">meden</div>
+                    <div class="footer-tagline">Emagrecimento médico, do Nordeste para o Nordeste</div>
+                </div>
+                <div class="footer-region">Atendemos todo o Nordeste</div>
+                <div class="footer-links">
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos de Uso</a>
+                </div>
+            </div>
+            <p class="footer-legal">As consultas são realizadas por médicos licenciados pelo Conselho Federal de Medicina (CFM). A prescrição de medicamentos está sujeita à avaliação médica individual. Este site não realiza propaganda de medicamentos.</p>
+            <p class="footer-copy">&copy; 2026 Meden. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // === Header scroll effect ===
+        (function() {
+            var header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                header.classList.toggle('scrolled', window.scrollY > 10);
+            });
+        })();
+
+        // === WhatsApp mask ===
+        (function() {
+            var input = document.getElementById('whatsapp');
+            input.addEventListener('input', function(e) {
+                var v = e.target.value.replace(/\D/g, '');
+                if (v.length > 11) v = v.slice(0, 11);
+                if (v.length > 7) {
+                    v = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
+                } else if (v.length > 2) {
+                    v = '(' + v.slice(0,2) + ') ' + v.slice(2);
+                } else if (v.length > 0) {
+                    v = '(' + v;
+                }
+                e.target.value = v;
+            });
+        })();
+
+        // === Form validation & submit ===
+        (function() {
+            var form = document.getElementById('leadForm');
+            var formCard = document.getElementById('formCard');
+            var formSuccess = document.getElementById('formSuccess');
+            var whatsappLink = document.getElementById('whatsappLink');
+
+            function validateField(field) {
+                var valid = true;
+                if (field.required && !field.value.trim()) {
+                    valid = false;
+                }
+                if (field.id === 'whatsapp') {
+                    var digits = field.value.replace(/\D/g, '');
+                    if (digits.length < 10 || digits.length > 11) valid = false;
+                }
+                if (field.id === 'peso') {
+                    var peso = parseInt(field.value);
+                    if (isNaN(peso) || peso < 30 || peso > 300) valid = false;
+                }
+                field.classList.toggle('error', !valid);
+                return valid;
+            }
+
+            // Remove error on input
+            form.querySelectorAll('input, select').forEach(function(el) {
+                el.addEventListener('input', function() {
+                    el.classList.remove('error');
+                });
+                el.addEventListener('change', function() {
+                    el.classList.remove('error');
+                });
+            });
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                var fields = form.querySelectorAll('input[required], select[required]');
+                var allValid = true;
+                fields.forEach(function(field) {
+                    if (!validateField(field)) allValid = false;
+                });
+
+                if (!allValid) {
+                    var firstError = form.querySelector('.error');
+                    if (firstError) firstError.focus();
+                    return;
+                }
+
+                var nome = document.getElementById('nome').value.trim();
+                var whatsappDigits = document.getElementById('whatsapp').value.replace(/\D/g, '');
+
+                // Build WhatsApp link
+                var msg = encodeURIComponent(
+                    'Olá! Acabei de preencher o formulário no site e gostaria de agendar minha avaliação gratuita. Meu nome é ' + nome + '.'
+                );
+                var waUrl = 'https://wa.me/5584999999999?text=' + msg;
+                whatsappLink.href = waUrl;
+
+                // Show success
+                formCard.querySelector('form').style.display = 'none';
+                formCard.querySelector('.form-note').style.display = 'none';
+                formSuccess.classList.add('active');
+
+                // Scroll to success
+                formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                // Open WhatsApp
+                window.open(waUrl, '_blank');
+            });
+        })();
+
+        // === FAQ accordion ===
+        (function() {
+            document.querySelectorAll('.faq-question').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var item = btn.parentElement;
+                    var answer = item.querySelector('.faq-answer');
+                    var isOpen = item.classList.contains('open');
+
+                    // Close all
+                    document.querySelectorAll('.faq-item').forEach(function(i) {
+                        i.classList.remove('open');
+                        i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                        i.querySelector('.faq-answer').style.maxHeight = null;
+                    });
+
+                    // Open clicked if was closed
+                    if (!isOpen) {
+                        item.classList.add('open');
+                        btn.setAttribute('aria-expanded', 'true');
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                    }
+                });
+            });
+        })();
+
+        // === Smooth scroll for anchor links ===
+        (function() {
+            document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    var target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        var offset = 80;
+                        var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                        window.scrollTo({ top: top, behavior: 'smooth' });
+                    }
+                });
+            });
+        })();
+    </script>
+
+</body>
+</html>
