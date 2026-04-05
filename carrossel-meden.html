@@ -7,22 +7,30 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:'Red Hat Text',system-ui,sans-serif;background:#e8e6e2;color:#1a1a18}
 
         .controls{position:fixed;top:0;left:0;right:0;z-index:10;background:#fff;border-bottom:1px solid #e5e2de;padding:14px 24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-        .controls span{font-family:Montserrat,sans-serif;font-weight:800;font-size:1rem;margin-right:8px}
-        .controls em{font-style:normal;color:#1a7a5a}
+        .controls .brand{font-family:Montserrat,sans-serif;font-weight:800;font-size:1rem;margin-right:8px}
+        .controls .brand em{font-style:normal;color:#1a7a5a}
         .tab{padding:8px 18px;font-family:inherit;font-size:.8rem;font-weight:600;border:2px solid #e5e2de;background:#fff;color:#6b6560;border-radius:50px;cursor:pointer;transition:all .2s}
         .tab.active{background:#1a7a5a;color:#fff;border-color:#1a7a5a}
         .tab:hover{border-color:#1a7a5a}
-        .info{margin-left:auto;font-size:.72rem;color:#9a958f}
 
-        .gallery{padding:80px 24px 40px;display:flex;flex-direction:column;align-items:center;gap:32px}
+        .gallery{padding:72px 24px 40px;display:flex;flex-direction:column;align-items:center;gap:24px}
 
-        /* ---- SLIDE BASE ---- */
-        .slide{width:1080px;height:1080px;position:relative;overflow:hidden;flex-shrink:0;border-radius:8px;box-shadow:0 4px 24px rgba(0,0,0,.12)}
+        /* slide wrapper */
+        .slide-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+        .slide-label{font-size:.75rem;font-weight:600;color:#9a958f;text-transform:uppercase;letter-spacing:.08em}
+
+        /* slide canvas — always 1080x1080 internally, scaled via transform */
+        .slide{width:1080px;height:1080px;position:relative;overflow:hidden;transform-origin:top center;border-radius:4px;box-shadow:0 2px 16px rgba(0,0,0,.1)}
+
+        .dl-btn{padding:10px 28px;font-family:inherit;font-size:.82rem;font-weight:600;background:#1a7a5a;color:#fff;border:none;border-radius:50px;cursor:pointer;transition:background .2s}
+        .dl-btn:hover{background:#15644a}
+        .dl-btn:disabled{opacity:.5;cursor:wait}
 
         /* ---- SHARED ---- */
         .s-footer{position:absolute;bottom:0;left:0;right:0;padding:28px 72px;display:flex;align-items:center;justify-content:space-between;z-index:2}
@@ -33,12 +41,10 @@
         .s-dot{width:12px;height:12px;border-radius:50%}
         .s-orb{position:absolute;border-radius:50%;filter:blur(120px)}
 
-        /* ==============================
-           SLIDE 1 — IMPACTO / MARCA
-           ============================== */
+        /* ---- S1: IMPACTO ---- */
         .s1{background:#f8f7f5;display:flex;align-items:center;justify-content:center}
-        .s1 .s1-inner{text-align:center;z-index:1;position:relative}
-        .s1 .s1-leaf{position:absolute;top:50%;left:50%;width:420px;height:420px;transform:translate(-50%,-50%);opacity:.06;object-fit:contain}
+        .s1-leaf{position:absolute;top:50%;left:50%;width:420px;height:420px;transform:translate(-50%,-50%);opacity:.06;object-fit:contain}
+        .s1-inner{text-align:center;z-index:1;position:relative}
         .s1-brand{font-family:Montserrat,sans-serif;font-size:96px;font-weight:800;letter-spacing:-.04em;color:#1a1a18;margin-bottom:16px}
         .s1-brand em{font-style:normal;color:#1a7a5a}
         .s1-tagline{font-size:36px;color:#7a756f;font-weight:400;margin-bottom:48px}
@@ -47,9 +53,7 @@
         .s1 .s-logo{color:#1a1a18}.s1 .s-logo em{color:#1a7a5a}
         .s1 .s-dot{background:#e5e2de}.s1 .s-dot.active{background:#1a7a5a}
 
-        /* ==============================
-           SLIDE 2 — IDENTIDADE REGIONAL
-           ============================== */
+        /* ---- S2: IDENTIDADE ---- */
         .s2{background:linear-gradient(158deg,#0f3d2e,#1a7a5a)}
         .s2 .s-orb-1{width:600px;height:600px;background:#14a06e;top:-15%;right:-10%;opacity:.35}
         .s2 .s-orb-2{width:400px;height:400px;background:#0f5c42;bottom:-10%;left:-8%;opacity:.3}
@@ -62,9 +66,7 @@
         .s2 .s-logo{color:#fff}.s2 .s-logo em{color:#7ddba8}
         .s2 .s-dot{background:rgba(255,255,255,.15)}.s2 .s-dot.active{background:#7ddba8}
 
-        /* ==============================
-           SLIDE 3 — PROPOSTA DE VALOR
-           ============================== */
+        /* ---- S3: VALOR ---- */
         .s3{background:#f8f7f5}
         .s3-inner{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;padding:100px 80px;height:100%}
         .s3-icon{width:80px;height:80px;background:#e6f5ee;border-radius:20px;display:flex;align-items:center;justify-content:center;margin-bottom:40px}
@@ -78,9 +80,7 @@
         .s3 .s-logo{color:#1a1a18}.s3 .s-logo em{color:#1a7a5a}
         .s3 .s-dot{background:#e5e2de}.s3 .s-dot.active{background:#1a7a5a}
 
-        /* ==============================
-           SLIDE 4 — QUEBRA DE OBJECOES
-           ============================== */
+        /* ---- S4: OBJEÇÕES ---- */
         .s4{background:#0b1f17}
         .s4 .s-orb-1{width:500px;height:500px;background:#1a7a5a;top:-10%;left:-10%;opacity:.35}
         .s4-inner{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:100px 80px;height:100%}
@@ -93,14 +93,12 @@
         .s4 .s-logo{color:#fff}.s4 .s-logo em{color:#7ddba8}
         .s4 .s-dot{background:rgba(255,255,255,.1)}.s4 .s-dot.active{background:#7ddba8}
 
-        /* ==============================
-           SLIDE 5 — COMO FUNCIONA
-           ============================== */
+        /* ---- S5: COMO FUNCIONA ---- */
         .s5{background:linear-gradient(158deg,#145e44,#0a2e1f)}
         .s5 .s-orb-1{width:500px;height:500px;background:#1a7a5a;bottom:-15%;right:-10%;opacity:.3}
         .s5-inner{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;padding:80px;height:100%}
         .s5-label{font-size:24px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#7ddba8;margin-bottom:48px}
-        .s5-steps{display:flex;flex-direction:column;gap:0}
+        .s5-steps{display:flex;flex-direction:column}
         .s5-step{display:flex;align-items:flex-start;gap:28px;position:relative;padding-bottom:40px}
         .s5-step:last-child{padding-bottom:0}
         .s5-step::before{content:'';position:absolute;left:32px;top:68px;bottom:0;width:2px;background:rgba(255,255,255,.1)}
@@ -112,192 +110,168 @@
         .s5 .s-logo{color:#fff}.s5 .s-logo em{color:#7ddba8}
         .s5 .s-dot{background:rgba(255,255,255,.1)}.s5 .s-dot.active{background:#7ddba8}
 
-        /* ==============================
-           SLIDE 6 — CTA
-           ============================== */
+        /* ---- S6: CTA ---- */
         .s6{background:#f8f7f5;display:flex;align-items:center;justify-content:center}
         .s6-inner{text-align:center;z-index:1;position:relative;display:flex;flex-direction:column;align-items:center}
         .s6-title{font-family:Montserrat,sans-serif;font-size:72px;font-weight:800;color:#1a1a18;letter-spacing:-.03em;margin-bottom:48px;line-height:1.1}
         .s6-btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:28px 64px;background:#1a7a5a;color:#fff;font-family:Montserrat,sans-serif;font-size:36px;font-weight:700;border-radius:50px;margin-bottom:32px;box-shadow:0 8px 32px rgba(26,122,90,.3)}
         .s6-arrow{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:40px}
         .s6-arrow span{font-size:28px;color:#7a756f}
-        .s6-arrow svg{width:36px;height:36px;color:#1a7a5a;animation:bounce 1.5s ease-in-out infinite}
-        @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+        .s6-arrow svg{width:36px;height:36px;color:#1a7a5a}
         .s6-sub{font-size:30px;color:#9a958f}
         .s6 .s-footer::before{background:#eae7e2}
         .s6 .s-logo{color:#1a1a18}.s6 .s-logo em{color:#1a7a5a}
         .s6 .s-dot{background:#e5e2de}.s6 .s-dot.active{background:#1a7a5a}
-
-        /* scale */
-        .slide{transform:scale(var(--s,.5));transform-origin:top center;margin-bottom:calc(-1080px * (1 - var(--s,.5)));position:relative}
-
-        /* download btn per slide */
-        .slide-wrap{position:relative;display:flex;flex-direction:column;align-items:center}
-        .dl-btn{margin-top:calc(-1080px * (1 - var(--s,.5)) + 12px);padding:10px 24px;font-family:inherit;font-size:.8rem;font-weight:600;background:#1a7a5a;color:#fff;border:none;border-radius:50px;cursor:pointer;transition:background .2s;z-index:5;position:relative}
-        .dl-btn:hover{background:#15644a}
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
 <div class="controls">
-    <span>me<em>d</em>en</span>
-    <button class="tab active" data-s=".5">50%</button>
-    <button class="tab" data-s=".75">75%</button>
+    <span class="brand">me<em>d</em>en</span>
+    <button class="tab" data-s="0.35">35%</button>
+    <button class="tab active" data-s="0.5">50%</button>
+    <button class="tab" data-s="0.75">75%</button>
     <button class="tab" data-s="1">100%</button>
-    <span class="info">Clique direito em cada slide > "Salvar imagem como..." ou Print Screen</span>
 </div>
 
 <div class="gallery" id="gallery">
 
-<!-- SLIDE 1 — IMPACTO -->
-<div class="slide-wrap"><div class="slide s1">
-    <img class="s1-leaf" src="logonova.png" alt="">
-    <div class="s1-inner">
-        <div class="s1-brand">me<em>d</em>en</div>
-        <div class="s1-tagline">Emagrecimento médico com acompanhamento real.</div>
-        <div class="s1-arrived">A Meden chegou. 🌿</div>
-    </div>
-    <div class="s-footer">
-        <div class="s-logo">me<em>d</em>en</div>
-        <div class="s-dots"><div class="s-dot active"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div></div>
-    </div>
-</div>
-
-<button class="dl-btn" data-slide="1">Baixar slide 1</button></div>
-
-<!-- SLIDE 2 — IDENTIDADE REGIONAL -->
-<div class="slide-wrap"><div class="slide s2">
-    <div class="s-orb s-orb-1"></div>
-    <div class="s-orb s-orb-2"></div>
-    <div class="s2-inner">
-        <div class="s2-pill">100% online</div>
-        <div class="s2-title">Saúde digital <em>feita pra você.</em></div>
-        <div class="s2-body">Atendimento pensado pra sua realidade. Sem distância, sem espera, sem complicação.</div>
-    </div>
-    <div class="s-footer">
-        <div class="s-logo">me<em>d</em>en</div>
-        <div class="s-dots"><div class="s-dot"></div><div class="s-dot active"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div></div>
-    </div>
-</div>
-
-<button class="dl-btn" data-slide="2">Baixar slide 2</button></div>
-
-<!-- SLIDE 3 — PROPOSTA DE VALOR -->
-<div class="slide-wrap"><div class="slide s3">
-    <div class="s3-inner">
-        <div class="s3-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-        <div class="s3-title">Emagrecimento com acompanhamento <em>médico de verdade.</em></div>
-        <div class="s3-body">Nada de promessa milagrosa. Médicos especialistas, tratamento personalizado, resultado real.</div>
-        <div class="s3-badge"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Médicos licenciados pelo CFM</div>
-    </div>
-    <div class="s-footer">
-        <div class="s-logo">me<em>d</em>en</div>
-        <div class="s-dots"><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot active"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div></div>
-    </div>
-</div>
-
-<button class="dl-btn" data-slide="3">Baixar slide 3</button></div>
-
-<!-- SLIDE 4 — QUEBRA DE OBJEÇÕES -->
-<div class="slide-wrap"><div class="slide s4">
-    <div class="s-orb s-orb-1"></div>
-    <div class="s4-inner">
-        <div class="s4-lines">
-            <div class="s4-line"><div class="s4-x">&times;</div><div class="s4-text">Sem sair de casa.</div></div>
-            <div class="s4-line"><div class="s4-x">&times;</div><div class="s4-text">Sem fila.</div></div>
-            <div class="s4-line"><div class="s4-x">&times;</div><div class="s4-text">Sem complicação.</div></div>
+<!-- SLIDE 1 -->
+<div class="slide-wrap">
+    <span class="slide-label">Slide 1 — Impacto</span>
+    <div class="slide s1" style="transform:scale(0.5)">
+        <img class="s1-leaf" src="logonova.png" alt="">
+        <div class="s1-inner">
+            <div class="s1-brand">me<em>d</em>en</div>
+            <div class="s1-tagline">Emagrecimento médico com acompanhamento real.</div>
+            <div class="s1-arrived">A Meden chegou. 🌿</div>
         </div>
-        <div class="s4-sub">Tudo 100% online, no seu tempo, do conforto da sua casa.</div>
+        <div class="s-footer"><div class="s-logo">me<em>d</em>en</div><div class="s-dots"><div class="s-dot active"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div></div></div>
     </div>
-    <div class="s-footer">
-        <div class="s-logo">me<em>d</em>en</div>
-        <div class="s-dots"><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot active"></div><div class="s-dot"></div><div class="s-dot"></div></div>
-    </div>
+    <button class="dl-btn" data-n="1">Baixar slide 1</button>
 </div>
 
-<button class="dl-btn" data-slide="4">Baixar slide 4</button></div>
+<!-- SLIDE 2 -->
+<div class="slide-wrap">
+    <span class="slide-label">Slide 2 — Identidade</span>
+    <div class="slide s2" style="transform:scale(0.5)">
+        <div class="s-orb s-orb-1"></div><div class="s-orb s-orb-2"></div>
+        <div class="s2-inner">
+            <div class="s2-pill">Nordeste</div>
+            <div class="s2-title">Saúde digital feita <em>pra quem vive aqui.</em></div>
+            <div class="s2-body">Atendimento pensado pra sua realidade. Começando pelo Nordeste, levando medicina de verdade pra onde mais precisa.</div>
+        </div>
+        <div class="s-footer"><div class="s-logo">me<em>d</em>en</div><div class="s-dots"><div class="s-dot"></div><div class="s-dot active"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div></div></div>
+    </div>
+    <button class="dl-btn" data-n="2">Baixar slide 2</button>
+</div>
 
-<!-- SLIDE 5 — COMO FUNCIONA -->
-<div class="slide-wrap"><div class="slide s5">
-    <div class="s-orb s-orb-1"></div>
-    <div class="s5-inner">
-        <div class="s5-label">Como funciona</div>
-        <div class="s5-steps">
-            <div class="s5-step">
-                <div class="s5-num">1</div>
-                <div class="s5-step-txt"><h3>Consulta com especialista</h3><p>Online, no horário que preferir.</p></div>
+<!-- SLIDE 3 -->
+<div class="slide-wrap">
+    <span class="slide-label">Slide 3 — Proposta de valor</span>
+    <div class="slide s3" style="transform:scale(0.5)">
+        <div class="s3-inner">
+            <div class="s3-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+            <div class="s3-title">Emagrecimento com acompanhamento <em>médico de verdade.</em></div>
+            <div class="s3-body">Nada de promessa milagrosa. Médicos especialistas, tratamento personalizado, resultado real.</div>
+            <div class="s3-badge"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Médicos licenciados pelo CFM</div>
+        </div>
+        <div class="s-footer"><div class="s-logo">me<em>d</em>en</div><div class="s-dots"><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot active"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div></div></div>
+    </div>
+    <button class="dl-btn" data-n="3">Baixar slide 3</button>
+</div>
+
+<!-- SLIDE 4 -->
+<div class="slide-wrap">
+    <span class="slide-label">Slide 4 — Quebra de objeções</span>
+    <div class="slide s4" style="transform:scale(0.5)">
+        <div class="s-orb s-orb-1"></div>
+        <div class="s4-inner">
+            <div class="s4-lines">
+                <div class="s4-line"><div class="s4-x">&times;</div><div class="s4-text">Sem sair de casa.</div></div>
+                <div class="s4-line"><div class="s4-x">&times;</div><div class="s4-text">Sem fila.</div></div>
+                <div class="s4-line"><div class="s4-x">&times;</div><div class="s4-text">Sem complicação.</div></div>
             </div>
-            <div class="s5-step">
-                <div class="s5-num">2</div>
-                <div class="s5-step-txt"><h3>Tratamento personalizado</h3><p>Prescrição individual, se indicado.</p></div>
-            </div>
-            <div class="s5-step">
-                <div class="s5-num">3</div>
-                <div class="s5-step-txt"><h3>Entrega discreta na sua porta</h3><p>Embalagem neutra, direto pra você.</p></div>
+            <div class="s4-sub">Tudo 100% online, no seu tempo, do conforto da sua casa.</div>
+        </div>
+        <div class="s-footer"><div class="s-logo">me<em>d</em>en</div><div class="s-dots"><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot active"></div><div class="s-dot"></div><div class="s-dot"></div></div></div>
+    </div>
+    <button class="dl-btn" data-n="4">Baixar slide 4</button>
+</div>
+
+<!-- SLIDE 5 -->
+<div class="slide-wrap">
+    <span class="slide-label">Slide 5 — Como funciona</span>
+    <div class="slide s5" style="transform:scale(0.5)">
+        <div class="s-orb s-orb-1"></div>
+        <div class="s5-inner">
+            <div class="s5-label">Como funciona</div>
+            <div class="s5-steps">
+                <div class="s5-step"><div class="s5-num">1</div><div class="s5-step-txt"><h3>Consulta com especialista</h3><p>Online, no horário que preferir.</p></div></div>
+                <div class="s5-step"><div class="s5-num">2</div><div class="s5-step-txt"><h3>Tratamento personalizado</h3><p>Prescrição individual, se indicado.</p></div></div>
+                <div class="s5-step"><div class="s5-num">3</div><div class="s5-step-txt"><h3>Entrega discreta na sua porta</h3><p>Embalagem neutra, direto pra você.</p></div></div>
             </div>
         </div>
+        <div class="s-footer"><div class="s-logo">me<em>d</em>en</div><div class="s-dots"><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot active"></div><div class="s-dot"></div></div></div>
     </div>
-    <div class="s-footer">
-        <div class="s-logo">me<em>d</em>en</div>
-        <div class="s-dots"><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot active"></div><div class="s-dot"></div></div>
-    </div>
+    <button class="dl-btn" data-n="5">Baixar slide 5</button>
 </div>
 
-<button class="dl-btn" data-slide="5">Baixar slide 5</button></div>
-
-<!-- SLIDE 6 — CTA -->
-<div class="slide-wrap"><div class="slide s6">
-    <div class="s6-inner">
-        <div class="s6-title">Simples assim.</div>
-        <div class="s6-btn">Começar agora</div>
-        <div class="s6-arrow">
-            <span>Link na bio</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+<!-- SLIDE 6 -->
+<div class="slide-wrap">
+    <span class="slide-label">Slide 6 — CTA</span>
+    <div class="slide s6" style="transform:scale(0.5)">
+        <div class="s6-inner">
+            <div class="s6-title">Simples assim.</div>
+            <div class="s6-btn">Começar agora</div>
+            <div class="s6-arrow">
+                <span>Link na bio</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+            </div>
+            <div class="s6-sub">Avaliação gratuita com médico especialista</div>
         </div>
-        <div class="s6-sub">Avaliação gratuita com médico especialista</div>
+        <div class="s-footer"><div class="s-logo">me<em>d</em>en</div><div class="s-dots"><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot active"></div></div></div>
     </div>
-    <div class="s-footer">
-        <div class="s-logo">me<em>d</em>en</div>
-        <div class="s-dots"><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot active"></div></div>
-    </div>
+    <button class="dl-btn" data-n="6">Baixar slide 6</button>
 </div>
-<button class="dl-btn" data-slide="6">Baixar slide 6</button></div>
 
 </div>
 
 <script>
-// zoom tabs
+// Zoom
 document.querySelectorAll('.tab').forEach(function(t){
     t.addEventListener('click',function(){
         document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('active')});
         t.classList.add('active');
         var s=t.dataset.s;
-        document.querySelectorAll('.slide').forEach(function(el){el.style.setProperty('--s',s)});
-        document.querySelectorAll('.dl-btn').forEach(function(b){b.style.marginTop='calc(-1080px * (1 - '+s+') + 12px)'});
+        document.querySelectorAll('.slide').forEach(function(el){el.style.transform='scale('+s+')'});
     });
 });
 
-// download individual slides
+// Download
 document.querySelectorAll('.dl-btn').forEach(function(btn){
     btn.addEventListener('click',function(){
-        var num=parseInt(btn.dataset.slide);
-        var slideEl=document.querySelectorAll('.slide')[num-1];
-        if(!slideEl)return;
-        var origTransform=slideEl.style.transform;
-        slideEl.style.transform='none';
+        var n=parseInt(btn.dataset.n);
+        var el=document.querySelectorAll('.slide')[n-1];
+        if(!el)return;
+        var orig=el.style.transform;
+        el.style.transform='none';
+        btn.disabled=true;
         btn.textContent='Gerando...';
-        html2canvas(slideEl,{scale:1,width:1080,height:1080,useCORS:true,allowTaint:true}).then(function(canvas){
+        html2canvas(el,{scale:1,width:1080,height:1080,useCORS:true,allowTaint:true,backgroundColor:null}).then(function(c){
             var a=document.createElement('a');
-            a.download='meden-slide-'+num+'.png';
-            a.href=canvas.toDataURL('image/png');
+            a.download='meden-slide-'+n+'.png';
+            a.href=c.toDataURL('image/png');
             a.click();
-            slideEl.style.transform=origTransform;
-            btn.textContent='Baixar slide '+num;
-        }).catch(function(){
-            slideEl.style.transform=origTransform;
-            btn.textContent='Baixar slide '+num;
-            alert('Erro ao gerar. Tente em 100% e use Print Screen.');
+            el.style.transform=orig;
+            btn.disabled=false;
+            btn.textContent='Baixar slide '+n;
+        }).catch(function(err){
+            console.error(err);
+            el.style.transform=orig;
+            btn.disabled=false;
+            btn.textContent='Baixar slide '+n;
+            alert('Erro ao gerar PNG. Tente colocar em 100% e usar Print Screen.');
         });
     });
 });
